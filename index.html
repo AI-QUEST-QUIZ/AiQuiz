@@ -51,69 +51,6 @@
       -webkit-tap-highlight-color: transparent;
     }
     
-    /* Animated Background */
-    .bg-effects {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-    }
-    
-    .glow-orb {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(100px);
-      opacity: 0.4;
-    }
-    
-    .glow-orb.gold {
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, rgba(255,215,0,0.3) 0%, transparent 70%);
-      top: -200px;
-      right: -100px;
-      animation: float 20s ease-in-out infinite;
-    }
-    
-    .glow-orb.purple {
-      width: 500px;
-      height: 500px;
-      background: radial-gradient(circle, rgba(139,92,246,0.25) 0%, transparent 70%);
-      bottom: -150px;
-      left: -100px;
-      animation: float 25s ease-in-out infinite reverse;
-    }
-    
-    .glow-orb.cyan {
-      width: 400px;
-      height: 400px;
-      background: radial-gradient(circle, rgba(6,182,212,0.2) 0%, transparent 70%);
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      animation: pulse 10s ease-in-out infinite;
-    }
-    
-    @keyframes float {
-      0%, 100% { transform: translate(0, 0); }
-      50% { transform: translate(30px, -30px); }
-    }
-    
-    @keyframes pulse {
-      0%, 100% { opacity: 0.2; transform: translate(-50%, -50%) scale(1); }
-      50% { opacity: 0.35; transform: translate(-50%, -50%) scale(1.1); }
-    }
-    
-    .grid-overlay {
-      position: absolute;
-      inset: 0;
-      background-image: 
-        linear-gradient(rgba(255,215,0,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,215,0,0.03) 1px, transparent 1px);
-      background-size: 60px 60px;
-      mask-image: radial-gradient(ellipse at center, black 0%, transparent 70%);
-    }
-    
     /* Layout */
     .screen { 
       display: none; 
@@ -265,6 +202,43 @@
       background-clip: text;
       filter: drop-shadow(0 2px 10px rgba(255,215,0,0.3));
     }
+
+    .intro-teams {
+      margin: 30px 0;
+    }
+
+    .intro-teams-label {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      margin-bottom: 12px;
+    }
+
+    .intro-teams-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      justify-content: center;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .intro-team-chip {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 100px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .intro-team-chip .team-icon {
+      font-size: 1.1rem;
+    }
     
     .tagline {
       color: var(--text-dim);
@@ -307,47 +281,47 @@
     .game-layout {
       display: flex;
       width: 100%;
-      max-width: 1400px;
-      gap: 24px;
-      margin-top: 20px;
+      max-width: 1500px;
+      gap: 16px;
+      margin-top: 15px;
     }
 
     /* ===== SIDE PANEL ===== */
     .side-panel {
-      width: 250px;
+      width: 180px;
       flex-shrink: 0;
       position: sticky;
-      top: 20px;
-      max-height: calc(100vh - 80px);
+      top: 15px;
+      max-height: calc(100vh - 60px);
       overflow-y: auto;
-      scrollbar-width: none; /* Firefox */
-      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none;
+      -ms-overflow-style: none;
     }
 
     .side-panel::-webkit-scrollbar {
-      display: none; /* Chrome, Safari, Opera */
+      display: none;
     }
 
     .side-panel-header {
-      padding: 12px 14px;
+      padding: 8px 10px;
       border-bottom: 1px solid var(--border);
-      margin-bottom: 8px;
+      margin-bottom: 4px;
     }
 
     .side-panel-title {
-      font-size: 0.85rem;
+      font-size: 0.75rem;
       font-weight: 700;
       color: var(--gold);
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 4px;
     }
 
     .questions-grid {
-      padding: 10px;
+      padding: 6px;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
+      gap: 4px;
     }
 
     .q-tile {
@@ -356,14 +330,14 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      border-radius: 12px;
+      border-radius: 6px;
       cursor: pointer;
       transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
       background: rgba(255,255,255,0.03);
-      border: 2px solid transparent;
-      padding: 6px;
+      border: 1px solid transparent;
+      padding: 2px;
       position: relative;
-      transform: scale(1);
+      font-size: 0.75rem;
     }
 
     .q-tile:hover {
@@ -394,7 +368,7 @@
 
     .q-tile-num {
       font-weight: 700;
-      font-size: 1.1rem;
+      font-size: 0.85rem;
       color: var(--text-dim);
       line-height: 1;
     }
@@ -408,9 +382,9 @@
     }
 
     .q-tile-team {
-      font-size: 0.6rem;
+      font-size: 0.5rem;
       font-weight: 600;
-      margin-top: 3px;
+      margin-top: 2px;
       color: var(--text-dim);
       max-width: 100%;
       overflow: hidden;
@@ -421,23 +395,23 @@
     .panel-legend {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
-      padding: 10px 12px;
+      gap: 6px;
+      padding: 6px 8px;
       border-top: 1px solid var(--border);
-      margin-top: 4px;
+      margin-top: 2px;
     }
 
     .legend-item {
       display: flex;
       align-items: center;
-      gap: 4px;
-      font-size: 0.65rem;
+      gap: 3px;
+      font-size: 0.55rem;
       color: var(--text-dim);
     }
 
     .legend-dot {
-      width: 8px;
-      height: 8px;
+      width: 6px;
+      height: 6px;
       border-radius: 2px;
     }
 
@@ -473,6 +447,7 @@
       align-items: center;
       justify-content: space-between;
       width: 100%;
+      gap: 16px;
     }
     
     .q-progress { 
@@ -527,33 +502,38 @@
       color: var(--gold);
       font-size: 0.9rem;
       font-weight: 600;
-      margin-bottom: 24px;
+      margin-bottom: 16px;
     }
     
     .question-card {
       width: 100%;
-      padding: 50px 60px;
+      padding: 35px 40px;
       text-align: center;
       position: relative;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
+    }
+
+    .question-card.compact {
+      padding: 30px 35px;
+      margin-bottom: 16px;
     }
     
     .q-number {
       position: absolute;
-      top: -18px;
+      top: -14px;
       left: 50%;
       transform: translateX(-50%);
-      padding: 10px 28px;
+      padding: 8px 22px;
       background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
       border-radius: 100px;
-      font-size: 0.9rem;
+      font-size: 0.8rem;
       font-weight: 700;
       color: #000;
       box-shadow: 0 4px 20px rgba(255,215,0,0.3);
     }
     
     .question-text {
-      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-size: clamp(1.2rem, 2.5vw, 1.6rem);
       font-weight: 600;
       line-height: 1.4;
     }
@@ -561,16 +541,16 @@
     .options-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      gap: 14px;
+      gap: 10px;
       width: 100%;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
     }
     
     .option-card {
       display: flex;
       align-items: center;
-      gap: 16px;
-      padding: 20px 24px;
+      gap: 12px;
+      padding: 14px 18px;
       transition: all 0.3s;
     }
     
@@ -580,37 +560,93 @@
     }
     
     .option-letter {
-      width: 44px;
-      height: 44px;
+      width: 36px;
+      height: 36px;
       display: flex;
       align-items: center;
       justify-content: center;
       background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
-      border-radius: 12px;
+      border-radius: 10px;
       font-weight: 700;
+      font-size: 0.9rem;
       color: #000;
       flex-shrink: 0;
       box-shadow: 0 2px 10px rgba(255,215,0,0.2);
     }
     
     .option-text {
-      font-size: 1.1rem;
+      font-size: 0.95rem;
       font-weight: 500;
     }
     
     .actions-row {
       display: flex;
-      gap: 12px;
-      margin-bottom: 20px;
+      gap: 10px;
+      margin-bottom: 14px;
       flex-wrap: wrap;
       justify-content: center;
     }
 
     .nav-row {
       display: flex;
-      gap: 12px;
-      margin-bottom: 20px;
+      gap: 10px;
+      margin-bottom: 14px;
       justify-content: center;
+    }
+
+    .btn-sm {
+      padding: 10px 18px;
+      font-size: 0.85rem;
+    }
+
+    .scoring-info.compact {
+      padding: 12px 20px;
+      font-size: 0.8rem;
+    }
+
+    /* ===== TEAMS STRIP (HORIZONTAL) ===== */
+    .teams-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      align-items: center;
+      padding: 8px 16px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+    }
+
+    .team-chip {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 14px;
+      background: transparent;
+      border-radius: 100px;
+      transition: all 0.2s ease;
+    }
+
+    .team-chip.leading {
+      background: rgba(255,215,0,0.15);
+    }
+
+    .team-chip-name {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-dim);
+    }
+
+    .team-chip.leading .team-chip-name {
+      color: var(--gold);
+    }
+
+    .team-chip-score {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--gold);
+      min-width: 16px;
+      text-align: center;
     }
 
     /* Transition animation for question change */
@@ -895,7 +931,7 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      padding: 10px;
+      padding: 12px;
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.3s;
@@ -911,19 +947,31 @@
       font-weight: 600;
       color: var(--gold);
       margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .hover-team-image {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      object-fit: cover;
     }
     
     .hover-btn {
       width: 100%;
-      padding: 10px 8px;
+      padding: 12px 10px;
       border: none;
       border-radius: 10px;
       font-family: inherit;
-      font-size: 0.85rem;
+      font-size: 0.9rem;
       font-weight: 700;
       cursor: pointer;
       transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
       transform: scale(1);
+      position: relative;
+      z-index: 10;
     }
     
     .hover-btn:hover {
@@ -945,6 +993,21 @@
       background: linear-gradient(135deg, var(--red) 0%, #dc2626 100%);
       color: white;
     }
+
+    /* Team Image Support */
+    .team-image {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 10px;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
+      transition: transform 0.3s;
+    }
+
+    .team-card:hover .team-image {
+      transform: scale(1.15);
+    }
     
     /* Mobile Action Panel */
     .mobile-action-panel {
@@ -965,6 +1028,7 @@
     }
     
     .selected-team-icon { font-size: 2rem; }
+    .selected-team-img { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; }
     .selected-team-name { font-size: 1.2rem; font-weight: 700; color: var(--gold); }
     
     .action-buttons {
@@ -1061,6 +1125,13 @@
 
     .answered-team-icon {
       font-size: 3rem;
+    }
+
+    .answered-team-image {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
     }
 
     .answered-team-name {
@@ -1171,7 +1242,7 @@
       position: fixed;
       top: 30px;
       left: 50%;
-      transform: translateX(-50%) translateY(-100px);
+      transform: translateX(-50%) translateY(-200px);
       display: flex;
       align-items: center;
       gap: 16px;
@@ -1181,11 +1252,15 @@
       border: 1px solid var(--border);
       box-shadow: 0 20px 60px rgba(0,0,0,0.5);
       z-index: 2000;
-      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
+      opacity: 0;
+      visibility: hidden;
     }
     
     .toast.show {
       transform: translateX(-50%) translateY(0);
+      opacity: 1;
+      visibility: visible;
     }
     
     .toast-icon { font-size: 2.5rem; }
@@ -1226,20 +1301,26 @@
     /* ===== WINNER ===== */
     .winner-content {
       text-align: center;
-      padding-top: 50px;
+      padding: 15px 20px;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
     }
     
     .trophy-container {
       position: relative;
-      margin-bottom: 20px;
+      margin-bottom: 8px;
     }
     
     .trophy-glow {
       position: absolute;
       top: 50%;
       left: 50%;
-      width: 200px;
-      height: 200px;
+      width: 120px;
+      height: 120px;
       background: radial-gradient(circle, rgba(255,215,0,0.4) 0%, transparent 70%);
       transform: translate(-50%, -50%);
       animation: trophyGlow 2s ease-in-out infinite;
@@ -1251,7 +1332,7 @@
     }
     
     .trophy-icon {
-      font-size: 7rem;
+      font-size: 4rem;
       position: relative;
       filter: drop-shadow(0 0 30px rgba(255,215,0,0.5));
       animation: trophyBounce 1.5s ease-in-out infinite;
@@ -1259,25 +1340,25 @@
     
     @keyframes trophyBounce {
       0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-15px); }
+      50% { transform: translateY(-8px); }
     }
     
     .winner-label {
-      font-size: 1rem;
+      font-size: 0.75rem;
       letter-spacing: 0.3em;
       text-transform: uppercase;
       color: var(--text-dim);
-      margin-bottom: 8px;
+      margin-bottom: 2px;
     }
     
     .champion-title {
-      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
       font-weight: 900;
       background: linear-gradient(135deg, var(--gold) 0%, #FFA500 50%, var(--gold-dark) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
-      margin-bottom: 40px;
+      margin-bottom: 15px;
       letter-spacing: 0.05em;
     }
     
@@ -1286,36 +1367,51 @@
       flex-direction: column;
       align-items: center;
       padding: 50px 80px;
-      border-radius: 32px;
-      margin-bottom: 50px;
-      box-shadow: 0 25px 80px rgba(0,0,0,0.4);
+      border-radius: 28px;
+      box-shadow: 0 25px 80px rgba(0,0,0,0.5);
+      min-width: 280px;
     }
     
-    .winner-icon { font-size: 5.5rem; margin-bottom: 16px; }
-    .winner-name { font-size: 2.5rem; font-weight: 800; color: #000; }
-    .winner-score { font-size: 1.3rem; color: rgba(0,0,0,0.6); margin-top: 6px; }
+    .winner-icon { font-size: 6rem; margin-bottom: 16px; }
+    .winner-image { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 16px; }
+    .winner-name { font-size: 2.8rem; font-weight: 800; color: #000; }
+    .winner-score { font-size: 1.4rem; color: rgba(0,0,0,0.6); margin-top: 6px; }
+    
+    .winner-layout {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 120px;
+      margin-bottom: 30px;
+      width: 100%;
+      max-width: 1000px;
+    }
+    
+    .leaderboard-side {
+      text-align: left;
+    }
     
     .final-title {
-      font-size: 1.2rem;
+      font-size: 1rem;
       color: #9ca3af;
-      margin-bottom: 24px;
+      margin-bottom: 14px;
     }
     
     .final-leaderboard {
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      max-width: 500px;
-      width: 100%;
-      margin-bottom: 40px;
+      gap: 8px;
+      min-width: 280px;
+      max-width: 320px;
     }
     
     .final-row {
       display: flex;
       align-items: center;
-      gap: 16px;
-      padding: 16px 24px;
-      border-radius: 16px;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 18px;
+      border-radius: 10px;
       background: rgba(255,255,255,0.03);
       border: 1px solid var(--border);
     }
@@ -1325,18 +1421,19 @@
       border-color: rgba(255,215,0,0.3);
     }
     .final-row.silver {
-      background: linear-gradient(135deg, rgba(192,192,192,0.1) 0%, rgba(192,192,192,0.03) 100%);
+      background: linear-gradient(135deg, rgba(192,192,192,0.08) 0%, rgba(192,192,192,0.02) 100%);
       border-color: rgba(192,192,192,0.2);
     }
     .final-row.bronze {
-      background: linear-gradient(135deg, rgba(205,127,50,0.1) 0%, rgba(205,127,50,0.03) 100%);
+      background: linear-gradient(135deg, rgba(205,127,50,0.08) 0%, rgba(205,127,50,0.02) 100%);
       border-color: rgba(205,127,50,0.2);
     }
     
-    .final-rank { font-size: 1.5rem; width: 40px; }
-    .final-icon { font-size: 1.8rem; }
-    .final-name { flex: 1; font-weight: 600; font-size: 1.1rem; text-align: left; }
-    .final-score { color: var(--gold); font-weight: 700; font-size: 1.2rem; }
+    .final-rank { font-size: 1rem; min-width: 28px; }
+    .final-icon { display: none; }
+    .final-image { display: none; }
+    .final-name { flex: 1; font-weight: 600; font-size: 1rem; text-align: left; }
+    .final-score { color: var(--gold); font-weight: 700; font-size: 1rem; }
 
     /* Mobile toggle for side panel */
     .panel-toggle {
@@ -1366,7 +1463,7 @@
         position: fixed;
         top: 0;
         left: -100%;
-        width: 250px;
+        width: 200px;
         height: 100vh;
         max-height: 100vh;
         z-index: 200;
@@ -1508,23 +1605,34 @@
       .winner-content { padding-top: 30px; }
       .trophy-icon { font-size: 5rem; }
       .trophy-glow { width: 150px; height: 150px; }
-      .winner-label { font-size: 0.8rem; }
-      .champion-title { font-size: 2rem; margin-bottom: 24px; }
-      .winner-showcase { padding: 30px 50px; margin-bottom: 30px; }
-      .winner-icon { font-size: 4rem; margin-bottom: 10px; }
-      .winner-name { font-size: 1.8rem; }
-      .winner-score { font-size: 1rem; }
-      .final-title { font-size: 1rem; margin-bottom: 16px; }
-      .final-row { padding: 12px 16px; gap: 12px; }
-      .final-rank { font-size: 1.2rem; width: 32px; }
-      .final-icon { font-size: 1.4rem; }
-      .final-name { font-size: 0.95rem; }
-      .final-score { font-size: 1rem; }
-      
-      /* Background */
-      .glow-orb.gold { width: 300px; height: 300px; }
-      .glow-orb.purple { width: 250px; height: 250px; }
-      .glow-orb.cyan { width: 200px; height: 200px; }
+      .winner-label { font-size: 0.85rem; }
+      .champion-title { font-size: 2.5rem; margin-bottom: 30px; }
+      .winner-layout { gap: 150px; }
+      .winner-showcase { padding: 60px 100px; }
+      .winner-icon { font-size: 7rem; margin-bottom: 20px; }
+      .winner-image { width: 140px; height: 140px; }
+      .winner-name { font-size: 3.2rem; }
+      .winner-score { font-size: 1.5rem; }
+      .final-title { font-size: 1.1rem; margin-bottom: 16px; }
+    }
+
+    @media (max-width: 768px) {
+      .winner-layout {
+        flex-direction: column;
+        gap: 30px;
+      }
+      .leaderboard-side {
+        text-align: center;
+      }
+      .final-leaderboard {
+        align-items: center;
+      }
+      .winner-showcase {
+        padding: 40px 60px;
+      }
+      .winner-icon { font-size: 5rem; }
+      .winner-name { font-size: 2rem; }
+      .winner-score { font-size: 1.1rem; }
     }
     
     @media (max-width: 400px) {
@@ -1537,14 +1645,6 @@
   </style>
 </head>
 <body>
-  <!-- Background Effects -->
-  <div class="bg-effects">
-    <div class="glow-orb gold"></div>
-    <div class="glow-orb purple"></div>
-    <div class="glow-orb cyan"></div>
-    <div class="grid-overlay"></div>
-  </div>
-
   <!-- Confetti Container -->
   <div class="confetti-container" id="confettiContainer"></div>
 
@@ -1587,7 +1687,7 @@
   <!-- QUESTION -->
   <div id="question" class="screen">
     <div class="game-layout">
-      <!-- Side Panel -->
+      <!-- Side Panel - Questions -->
       <div class="side-panel glass-card" id="sidePanel">
         <div class="side-panel-header">
           <div class="side-panel-title">📋 Questions</div>
@@ -1608,9 +1708,10 @@
               <span class="current" id="qNum">1</span>
               <span class="total">/ 21</span>
             </div>
+            <!-- Horizontal Teams Strip in Header -->
+            <div class="teams-strip" id="teamsStrip"></div>
             <div class="header-buttons">
-              <button class="btn btn-secondary" onclick="openModal()">📊 Leaderboard</button>
-              <button class="btn btn-gold" onclick="endQuiz()">🏆 End Quiz</button>
+              <button class="btn btn-gold btn-sm" onclick="endQuiz()">🏆 End Quiz</button>
             </div>
           </div>
           <div class="q-progress">
@@ -1622,7 +1723,7 @@
         
         <div class="category-badge" id="category">💡 Category</div>
         
-        <div class="question-card glass-card">
+        <div class="question-card glass-card compact">
           <div class="q-number" id="qBadge">Q1</div>
           <h2 class="question-text" id="qText"></h2>
         </div>
@@ -1637,19 +1738,19 @@
         <div class="options-grid" id="optionsGrid" style="display:none;"></div>
         
         <div class="actions-row">
-          <button class="btn btn-secondary" id="optBtn" onclick="toggleOptions()">👁️ Options</button>
-          <button class="btn btn-gold" onclick="showScreen('reveal')">Reveal Answer →</button>
+          <button class="btn btn-secondary btn-sm" id="optBtn" onclick="toggleOptions()">👁️ Options</button>
+          <button class="btn btn-gold btn-sm" onclick="showScreen('reveal')">Reveal →</button>
         </div>
         
         <div class="nav-row">
-          <button class="btn btn-secondary" id="prevBtn" onclick="goPrevious()">← Previous Question</button>
-          <button class="btn btn-secondary" id="nextBtn" onclick="goNext()">Next Question →</button>
-          <button class="btn btn-gold" id="resultsBtn" onclick="showScreen('winner')" style="display:none;">🏆 See Results</button>
+          <button class="btn btn-secondary btn-sm" id="prevBtn" onclick="goPrevious()">← Prev</button>
+          <button class="btn btn-secondary btn-sm" id="nextBtn" onclick="goNext()">Next →</button>
+          <button class="btn btn-gold btn-sm" id="resultsBtn" onclick="showScreen('winner')" style="display:none;">🏆 Results</button>
         </div>
         
-        <div class="scoring-info glass-card">
-          <div>✨ Without options: <strong>+2</strong> correct / <strong>-1</strong> wrong</div>
-          <div>💡 With options: <strong>+1</strong> correct / <strong>-1</strong> wrong</div>
+        <div class="scoring-info glass-card compact">
+          <div>✨ No options: <strong>+2</strong> / <strong>-1</strong></div>
+          <div>💡 With options: <strong>+1</strong> / <strong>-1</strong></div>
         </div>
       </div>
     </div>
@@ -1713,18 +1814,28 @@
       </div>
       <p class="winner-label">And the winner is...</p>
       <h1 class="champion-title">CHAMPION</h1>
-      <div class="winner-showcase" id="winnerCard">
-        <div class="winner-icon" id="winIcon"></div>
-        <div class="winner-name" id="winName"></div>
-        <div class="winner-score" id="winScore"></div>
+      
+      <div class="winner-layout">
+        <div class="winner-showcase" id="winnerCard">
+          <div class="winner-icon" id="winIcon"></div>
+          <div class="winner-name" id="winName"></div>
+          <div class="winner-score" id="winScore"></div>
+        </div>
+        
+        <div class="leaderboard-side">
+          <h3 class="final-title">🏆 Final Leaderboard</h3>
+          <div class="final-leaderboard" id="finalLeaderboard"></div>
+        </div>
       </div>
-      <h3 class="final-title">🏆 Final Leaderboard</h3>
-      <div class="final-leaderboard" id="finalLeaderboard"></div>
-      <button class="btn btn-gold" onclick="restart()">🔄 Play Again</button>
+      
+      <button class="btn btn-gold" onclick="restart()">🔄 Restart</button>
     </div>
   </div>
 
   <script>
+    // Teams can have either 'icon' (emoji) or 'image' (URL) for their avatar
+    // To use an image instead of emoji, add 'image' property with URL
+    // Example: { id: 0, name: 'Alpha', score: 0, image: 'https://example.com/avatar.png', bg: '...' }
     const teams = [
       { id: 0, name: 'Alpha', score: 0, icon: '🦁', bg: 'linear-gradient(135deg, #FFD700 0%, #FFA500 100%)' },
       { id: 1, name: 'Beta', score: 0, icon: '🐼', bg: 'linear-gradient(135deg, #9B59B6 0%, #8E44AD 100%)' },
@@ -1734,6 +1845,14 @@
       { id: 5, name: 'Zeta', score: 0, icon: '🐯', bg: 'linear-gradient(135deg, #F39C12 0%, #D68910 100%)' },
       { id: 6, name: 'Omega', score: 0, icon: '🦈', bg: 'linear-gradient(135deg, #E91E63 0%, #AD1457 100%)' }
     ];
+
+    // Helper function to get team avatar HTML (image or icon)
+    function getTeamAvatar(team, className = 'team-icon') {
+      if (team.image) {
+        return `<img src="${team.image}" alt="${team.name}" class="team-image">`;
+      }
+      return `<div class="${className}">${team.icon}</div>`;
+    }
 
     const questions = [
       { cat: 'AI Assistants', q: 'Which AI assistant was launched by Microsoft?', opts: ['Copilot', 'Alexa', 'Siri', 'Bixby'], ans: 'Copilot', icon: '💻', desc: 'Microsoft Copilot is integrated into Windows and Office products.' },
@@ -1962,6 +2081,22 @@
       }
       
       updateSidePanel();
+      updateLiveLeaderboard();
+    }
+
+    function updateLiveLeaderboard() {
+      const strip = $('teamsStrip');
+      if (!strip) return;
+      
+      const sorted = getSorted();
+      const maxScore = Math.max(...sorted.map(t => t.score));
+      
+      strip.innerHTML = sorted.map((t, i) => `
+        <div class="team-chip ${t.score > 0 && t.score === maxScore ? 'leading' : ''}">
+          <span class="team-chip-name">${t.name}</span>
+          <span class="team-chip-score">${t.score}</span>
+        </div>
+      `).join('');
     }
 
     function toggleOptions() {
@@ -2094,12 +2229,15 @@
         const answeredTeam = teams.find(t => t.id === state.teamId);
         const resultText = state.correct ? '✓ Correct' : '✗ Wrong';
         const resultClass = state.correct ? 'correct' : 'wrong';
+        const teamAvatarHtml = answeredTeam.image 
+          ? `<img src="${answeredTeam.image}" alt="${answeredTeam.name}" class="answered-team-image">`
+          : `<span class="answered-team-icon">${answeredTeam.icon}</span>`;
         
         $('teamsGrid').innerHTML = `
           <div class="already-answered">
             <div class="answered-label">Already Answered</div>
             <div class="answered-team">
-              <span class="answered-team-icon">${answeredTeam.icon}</span>
+              ${teamAvatarHtml}
               <span class="answered-team-name">${answeredTeam.name}</span>
               <span class="answered-result ${resultClass}">${resultText}</span>
             </div>
@@ -2114,18 +2252,26 @@
         // Add no-hover class to prevent immediate hover on page load
         $('teamsGrid').classList.add('no-hover');
         
-        $('teamsGrid').innerHTML = teams.map(t => `
-          <div class="team-card" data-id="${t.id}" onclick="selectTeam(${t.id})">
-            <div class="team-icon">${t.icon}</div>
-            <div class="team-name">${t.name}</div>
-            <div class="team-score">${t.score} pts</div>
-            <div class="team-hover">
-              <div class="hover-team-name">${t.icon} ${t.name}</div>
-              <button class="hover-btn correct" onclick="event.stopPropagation(); award(${t.id}, true)">✓ ${correctPts}</button>
-              <button class="hover-btn wrong" onclick="event.stopPropagation(); award(${t.id}, false)">✗ ${wrongPts}</button>
+        $('teamsGrid').innerHTML = teams.map(t => {
+          const avatarHtml = t.image 
+            ? `<img src="${t.image}" alt="${t.name}" class="team-image">`
+            : `<div class="team-icon">${t.icon}</div>`;
+          const hoverAvatarHtml = t.image 
+            ? `<img src="${t.image}" alt="${t.name}" class="hover-team-image">`
+            : `<span>${t.icon}</span>`;
+          return `
+            <div class="team-card" data-id="${t.id}" onclick="selectTeam(${t.id})">
+              ${avatarHtml}
+              <div class="team-name">${t.name}</div>
+              <div class="team-score">${t.score} pts</div>
+              <div class="team-hover">
+                <div class="hover-team-name">${hoverAvatarHtml} ${t.name}</div>
+                <button class="hover-btn correct" onclick="event.stopPropagation(); award(${t.id}, true)">✓ ${correctPts}</button>
+                <button class="hover-btn wrong" onclick="event.stopPropagation(); award(${t.id}, false)">✗ ${wrongPts}</button>
+              </div>
             </div>
-          </div>
-        `).join('');
+          `;
+        }).join('');
         
         // Remove no-hover class after a short delay to enable hover
         setTimeout(() => {
@@ -2143,7 +2289,12 @@
       document.querySelector(`.team-card[data-id="${teamId}"]`).classList.add('selected');
       
       // Show mobile action panel
-      $('selectedTeamIcon').textContent = team.icon;
+      const iconEl = $('selectedTeamIcon');
+      if (team.image) {
+        iconEl.innerHTML = `<img src="${team.image}" alt="${team.name}" class="selected-team-img">`;
+      } else {
+        iconEl.textContent = team.icon;
+      }
       $('selectedTeamName').textContent = team.name;
       $('mobileActionPanel').classList.add('show');
       
@@ -2174,6 +2325,7 @@
       state.correct = correct;
       
       showToast(team.icon, team.name, pts);
+      updateLiveLeaderboard();
       
       // Go to next question with animation
       setTimeout(() => {
@@ -2362,23 +2514,34 @@
       const winner = sorted[0];
       
       $('winnerCard').style.background = 'linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FFD700 100%)';
-      $('winIcon').textContent = winner.icon;
+      
+      // Handle winner icon/image
+      const winIconEl = $('winIcon');
+      if (winner.image) {
+        winIconEl.innerHTML = `<img src="${winner.image}" alt="${winner.name}" class="winner-image">`;
+      } else {
+        winIconEl.textContent = winner.icon;
+      }
+      
       $('winName').textContent = winner.name;
       $('winScore').textContent = winner.score + ' points';
       
       $('finalLeaderboard').innerHTML = sorted.map((t, i) => {
         const cls = i === 0 ? 'gold' : i === 1 ? 'silver' : i === 2 ? 'bronze' : '';
+        const iconHtml = t.image 
+          ? `<img src="${t.image}" alt="${t.name}" class="final-image">`
+          : `<span class="final-icon">${t.icon}</span>`;
         return `
           <div class="final-row ${cls}">
             <span class="final-rank">${getRank(i)}</span>
-            <span class="final-icon">${t.icon}</span>
+            ${iconHtml}
             <span class="final-name">${t.name}</span>
             <span class="final-score">${t.score} pts</span>
           </div>
         `;
       }).join('');
       
-      // Only show confetti on first reveal
+      // Launch confetti on first reveal
       if (!confettiShown) {
         confettiRunning = true;
         launchConfetti();
