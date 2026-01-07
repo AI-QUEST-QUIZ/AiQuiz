@@ -604,37 +604,68 @@
       font-size: 0.8rem;
     }
 
-    /* ===== TEAMS STRIP (HORIZONTAL) ===== */
+    /* ===== TEAMS PANEL (VERTICAL RIGHT SIDE) ===== */
+    .teams-panel {
+      width: 200px;
+      flex-shrink: 0;
+      position: sticky;
+      top: 15px;
+      max-height: calc(100vh - 60px);
+      overflow-y: auto;
+      scrollbar-width: none;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px;
+    }
+
+    .teams-panel::-webkit-scrollbar {
+      display: none;
+    }
+
+    .teams-panel-title {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 14px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+
     .teams-strip {
       display: flex;
-      flex-wrap: wrap;
+      flex-direction: column;
       gap: 8px;
-      justify-content: center;
-      align-items: center;
-      padding: 8px 16px;
-      background: rgba(255,255,255,0.03);
-      border: 1px solid var(--border);
-      border-radius: 100px;
     }
 
     .team-chip {
       display: flex;
       align-items: center;
-      gap: 6px;
-      padding: 6px 14px;
-      background: transparent;
-      border-radius: 100px;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 12px 14px;
+      background: rgba(255,255,255,0.03);
+      border-radius: 12px;
+      border: 1px solid transparent;
       transition: all 0.2s ease;
     }
 
     .team-chip.leading {
-      background: rgba(255,215,0,0.15);
+      background: rgba(255,215,0,0.1);
+      border-color: rgba(255,215,0,0.3);
+    }
+
+    .team-chip-rank {
+      font-size: 0.8rem;
+      color: var(--text-dim);
+      min-width: 18px;
     }
 
     .team-chip-name {
+      flex: 1;
       font-size: 0.95rem;
       font-weight: 600;
-      color: var(--text-dim);
+      color: var(--text);
     }
 
     .team-chip.leading .team-chip-name {
@@ -645,8 +676,8 @@
       font-size: 1rem;
       font-weight: 700;
       color: var(--gold);
-      min-width: 16px;
-      text-align: center;
+      min-width: 24px;
+      text-align: right;
     }
 
     /* Transition animation for question change */
@@ -1381,14 +1412,15 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 120px;
+      gap: 80px;
       margin-bottom: 30px;
       width: 100%;
-      max-width: 1000px;
+      max-width: 1100px;
     }
     
     .leaderboard-side {
       text-align: left;
+      flex-shrink: 0;
     }
     
     .final-title {
@@ -1474,6 +1506,10 @@
 
       .side-panel.show {
         left: 0;
+      }
+
+      .teams-panel {
+        display: none;
       }
 
       .panel-overlay {
@@ -1616,7 +1652,15 @@
       .final-title { font-size: 1.1rem; margin-bottom: 16px; }
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 900px) {
+      .winner-layout { gap: 50px; }
+      .winner-showcase { padding: 40px 60px; }
+      .winner-icon { font-size: 5rem; }
+      .winner-name { font-size: 2.2rem; }
+      .final-leaderboard { min-width: 220px; }
+    }
+
+    @media (max-width: 600px) {
       .winner-layout {
         flex-direction: column;
         gap: 30px;
@@ -1708,8 +1752,6 @@
               <span class="current" id="qNum">1</span>
               <span class="total">/ 21</span>
             </div>
-            <!-- Horizontal Teams Strip in Header -->
-            <div class="teams-strip" id="teamsStrip"></div>
             <div class="header-buttons">
               <button class="btn btn-gold btn-sm" onclick="endQuiz()">🏆 End Quiz</button>
             </div>
@@ -1752,6 +1794,12 @@
           <div>✨ No options: <strong>+2</strong> / <strong>-1</strong></div>
           <div>💡 With options: <strong>+1</strong> / <strong>-1</strong></div>
         </div>
+      </div>
+
+      <!-- Teams Panel (Right Side) -->
+      <div class="teams-panel">
+        <div class="teams-panel-title">Scores</div>
+        <div class="teams-strip" id="teamsStrip"></div>
       </div>
     </div>
 
@@ -1828,7 +1876,7 @@
         </div>
       </div>
       
-      <button class="btn btn-gold" onclick="restart()">🔄 Restart</button>
+      <button class="btn btn-gold" onclick="restart()">🔄 Restart Quest</button>
     </div>
   </div>
 
@@ -2093,6 +2141,7 @@
       
       strip.innerHTML = sorted.map((t, i) => `
         <div class="team-chip ${t.score > 0 && t.score === maxScore ? 'leading' : ''}">
+          <span class="team-chip-rank">${i + 1}</span>
           <span class="team-chip-name">${t.name}</span>
           <span class="team-chip-score">${t.score}</span>
         </div>
