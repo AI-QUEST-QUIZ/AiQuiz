@@ -684,61 +684,34 @@
       border: 1px solid rgba(16,185,129,0.3);
       border-radius: 14px;
       margin-bottom: 24px;
-    }
-
-    .qa-answer {
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--green);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .qa-answer::before {
-      content: '✓';
-      display: inline-flex;
-      align-items: center;
+      flex-wrap: wrap;
       justify-content: center;
-      width: 24px;
-      height: 24px;
-      background: var(--green);
-      color: #fff;
-      border-radius: 50%;
-      font-size: 0.75rem;
-      font-weight: 700;
     }
 
-    .qa-team {
+    .qa-item {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 6px;
+      font-size: 1rem;
     }
 
-    .qa-team-icon {
-      font-size: 1.8rem;
+    .qa-item:not(:last-child)::after {
+      content: '|';
+      margin-left: 14px;
+      color: rgba(255,255,255,0.2);
     }
 
-    .qa-team-name {
-      font-size: 1.1rem;
+    .qa-label {
+      color: var(--text-dim);
+      font-weight: 500;
+    }
+
+    .qa-value {
       font-weight: 700;
-      color: var(--text);
-    }
-
-    .qa-points {
-      padding: 4px 14px;
-      border-radius: 100px;
-      font-size: 0.9rem;
-      font-weight: 700;
-    }
-
-    .qa-points.positive {
-      background: rgba(16,185,129,0.2);
       color: var(--green);
     }
 
-    .qa-points.negative {
-      background: rgba(239,68,68,0.2);
+    .qa-value.negative {
       color: var(--red);
     }
 
@@ -1482,9 +1455,9 @@
         padding: 14px 20px;
       }
       
-      .qa-team-icon { font-size: 1.5rem; }
-      .qa-team-name { font-size: 1rem; }
-      .qa-answer { font-size: 1rem; }
+      .qa-item { font-size: 0.85rem; }
+      .qa-label { font-size: 0.85rem; }
+      .qa-value { font-size: 0.85rem; }
       
       /* Reveal */
       .reveal-content { padding-top: 15px; }
@@ -1656,12 +1629,9 @@
         
         <!-- Show which team answered if already answered -->
         <div class="question-answered-info" id="questionAnsweredInfo" style="display:none;">
-          <div class="qa-answer" id="qaAnswer"></div>
-          <div class="qa-team">
-            <span class="qa-team-icon" id="qaTeamIcon"></span>
-            <span class="qa-team-name" id="qaTeamName"></span>
-            <span class="qa-points" id="qaPoints"></span>
-          </div>
+          <div class="qa-item"><span class="qa-label">Ans:</span> <span class="qa-value" id="qaAnswer"></span></div>
+          <div class="qa-item"><span class="qa-label">Team:</span> <span class="qa-value" id="qaTeamName"></span></div>
+          <div class="qa-item"><span class="qa-label">Score:</span> <span class="qa-value" id="qaPoints"></span></div>
         </div>
         
         <div class="options-grid" id="optionsGrid" style="display:none;"></div>
@@ -1977,15 +1947,14 @@
         // Show the correct answer
         $('qaAnswer').textContent = q.ans;
         
-        // Show team info
-        $('qaTeamIcon').textContent = team.icon;
+        // Show team name
         $('qaTeamName').textContent = team.name;
         
         // Calculate and show points
         const pts = state.correct ? (state.optionsUsed ? +1 : +2) : -1;
         const pointsEl = $('qaPoints');
-        pointsEl.textContent = (pts > 0 ? '+' : '') + pts + ' pts';
-        pointsEl.className = 'qa-points ' + (pts > 0 ? 'positive' : 'negative');
+        pointsEl.textContent = (pts > 0 ? '+' : '') + pts;
+        pointsEl.className = 'qa-value ' + (pts < 0 ? 'negative' : '');
         
         answeredInfo.style.display = 'flex';
       } else {
