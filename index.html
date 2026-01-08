@@ -108,8 +108,8 @@
     }
     
     .btn-gold:hover, .btn-gold:active {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 40px rgba(255,215,0,0.4), inset 0 1px 0 rgba(255,255,255,0.3);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 30px rgba(255,215,0,0.4), inset 0 1px 0 rgba(255,255,255,0.3);
     }
     
     .btn-gold::after {
@@ -461,6 +461,7 @@
       justify-content: space-between;
       width: 100%;
       gap: 16px;
+      padding: 4px 0;
     }
     
     .q-progress { 
@@ -502,6 +503,8 @@
     .header-buttons {
       display: flex;
       gap: 10px;
+      padding: 4px;
+      margin: -4px;
     }
     
     .category-badge {
@@ -520,35 +523,207 @@
     
     .question-card {
       width: 100%;
-      padding: 35px 40px;
+      padding: 50px 40px 35px 40px;
       text-align: center;
       position: relative;
       margin-bottom: 20px;
+      margin-top: 20px;
     }
 
     .question-card.compact {
-      padding: 30px 35px;
+      padding: 45px 35px 30px 35px;
       margin-bottom: 16px;
     }
     
     .q-number {
       position: absolute;
-      top: -25px;
+      top: -18px;
       left: 50%;
       transform: translateX(-50%);
-      padding: 8px 22px;
+      padding: 10px 28px;
       background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
       border-radius: 100px;
-      font-size: 1.3rem;
-      font-weight: 700;
+      font-size: 1.2rem;
+      font-weight: 800;
       color: #000;
       box-shadow: 0 4px 20px rgba(255,215,0,0.3);
+      z-index: 10;
     }
     
     .question-text {
       font-size: clamp(1.2rem, 2.5vw, 1.6rem);
       font-weight: 600;
-      line-height: 1.4;
+      line-height: 1.5;
+      margin-top: 5px;
+      flex: 1;
+      text-align: center;
+    }
+
+    /* Team Selection Display */
+    .team-selection-display {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 40px;
+      text-align: center;
+      min-height: 450px;
+    }
+
+    .selection-avatar {
+      font-size: 8rem;
+      margin-bottom: 40px;
+      animation: floatBounce 3s ease-in-out infinite;
+      filter: drop-shadow(0 15px 40px rgba(0,0,0,0.5));
+    }
+
+    .selection-avatar img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid var(--gold);
+    }
+
+    @keyframes floatBounce {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-20px) scale(1.05); }
+    }
+
+    .selection-label {
+      font-size: 1rem;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      letter-spacing: 0.35em;
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+
+    .selection-team-name {
+      font-size: 4rem;
+      font-weight: 800;
+      color: var(--gold);
+      margin-bottom: 35px;
+      text-shadow: 0 4px 30px rgba(255,215,0,0.4);
+    }
+
+    .selection-instruction {
+      font-size: 1.15rem;
+      color: var(--text-dim);
+      max-width: 450px;
+      line-height: 1.7;
+    }
+
+    .question-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+    }
+
+    /* Question Row with Expand Trigger */
+    .question-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      width: 100%;
+    }
+
+    .expand-trigger {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+
+    .expand-trigger:hover {
+      background: rgba(255,215,0,0.1);
+      border-color: var(--gold);
+    }
+
+    .expand-trigger:hover .expand-chevron {
+      color: var(--gold);
+    }
+
+    .expand-chevron {
+      width: 24px;
+      height: 24px;
+      color: var(--text-dim);
+      transition: transform 0.3s ease, opacity 0.3s ease, color 0.2s ease;
+    }
+
+    .expand-chevron.expanded {
+      transform: translateY(3px);
+      opacity: 0.7;
+      color: var(--gold);
+    }
+
+    /* Options Container with Animation */
+    .options-container {
+      width: 100%;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease-out, opacity 0.25s ease-out;
+      opacity: 0;
+      padding: 0;
+    }
+
+    .options-container.show {
+      max-height: 500px;
+      opacity: 1;
+      padding-top: 16px;
+      transition: max-height 0.4s ease-out, opacity 0.3s ease-in, padding 0.2s ease;
+    }
+
+    /* Tiebreaker Screen */
+    .tiebreaker-content {
+      text-align: center;
+      padding: 40px 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+    }
+
+    .tie-icon {
+      font-size: 5rem;
+      margin-bottom: 20px;
+      animation: shake 0.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes shake {
+      0% { transform: rotate(-5deg); }
+      100% { transform: rotate(5deg); }
+    }
+
+    .tie-title {
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--gold);
+      margin-bottom: 10px;
+      text-shadow: 0 4px 20px rgba(255,215,0,0.3);
+    }
+
+    .tie-subtitle {
+      font-size: 1.1rem;
+      color: var(--text-dim);
+      margin-bottom: 40px;
+    }
+
+    .tiebreaker-grid {
+      justify-content: center;
+      max-width: 800px;
     }
     
     .options-grid {
@@ -898,6 +1073,7 @@
       gap: 16px;
       flex-wrap: wrap;
       margin-bottom: 24px;
+      padding: 20px 10px;
     }
 
     .teams-grid.no-hover .team-hover {
@@ -911,31 +1087,29 @@
       padding: 24px 16px;
       border-radius: 20px;
       cursor: pointer;
-      transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: all 0.2s ease;
       text-align: center;
       background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0.02) 100%);
       border: 1px solid var(--border);
       transform: scale(1);
-    }
-    
-    .team-card:active {
-      transform: scale(0.95) !important;
-      transition: transform 0.1s ease;
+      z-index: 1;
     }
     
     .team-card:hover {
-      transform: translateY(-12px) scale(1.05);
+      transform: translateY(-8px) scale(1.03);
       border-color: var(--gold);
       box-shadow: 
-        0 20px 50px rgba(255,215,0,0.2),
+        0 15px 40px rgba(255,215,0,0.2),
         0 0 0 1px rgba(255,215,0,0.3),
         inset 0 1px 0 rgba(255,255,255,0.1);
+      z-index: 10;
     }
     
     .team-card.selected {
       border-color: var(--gold);
       box-shadow: 0 0 30px rgba(255,215,0,0.4);
-      transform: scale(1.05);
+      transform: scale(1.03);
+      z-index: 10;
     }
     
     .team-icon {
@@ -979,12 +1153,14 @@
       padding: 12px;
       opacity: 0;
       pointer-events: none;
-      transition: opacity 0.3s;
+      transition: opacity 0.25s ease;
+      z-index: 5;
     }
     
     .team-card:hover .team-hover {
       opacity: 1;
       pointer-events: auto;
+      z-index: 20;
     }
     
     .hover-team-name {
@@ -1013,10 +1189,11 @@
       font-size: 0.9rem;
       font-weight: 700;
       cursor: pointer;
-      transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: all 0.15s ease;
       transform: scale(1);
       position: relative;
-      z-index: 10;
+      z-index: 25;
+      pointer-events: auto;
     }
     
     .hover-btn:hover {
@@ -1566,9 +1743,29 @@
       .header-buttons { gap: 6px; }
       .header-buttons .btn { padding: 8px 12px; font-size: 0.75rem; }
       .category-badge { padding: 8px 16px; font-size: 0.8rem; }
-      .question-card { padding: 30px 20px; margin-bottom: 20px; }
-      .q-number { padding: 10px 24px; font-size: 1.1rem; top: -20px; }
+      .question-card { padding: 45px 20px 25px 20px; margin-bottom: 20px; margin-top: 15px; }
+      .q-number { padding: 8px 20px; font-size: 1rem; top: -15px; }
       .question-text { font-size: 1.2rem; }
+      
+      /* Team Selection Mobile */
+      .team-selection-display { padding: 50px 20px; min-height: 350px; }
+      .selection-avatar { font-size: 5rem; margin-bottom: 25px; }
+      .selection-avatar img { width: 100px; height: 100px; }
+      .selection-label { font-size: 0.85rem; }
+      .selection-team-name { font-size: 2.8rem; margin-bottom: 25px; }
+      .selection-instruction { font-size: 1rem; }
+      
+      /* Options Toggle Mobile */
+      .expand-trigger { width: 38px; height: 38px; }
+      .expand-chevron { width: 20px; height: 20px; }
+      
+      /* Tiebreaker Mobile */
+      .tiebreaker-content { padding: 30px 15px; }
+      .tie-icon { font-size: 3.5rem; }
+      .tie-title { font-size: 2rem; }
+      .tie-subtitle { font-size: 0.95rem; margin-bottom: 30px; }
+      .tiebreaker-grid { max-width: 100%; }
+      
       .options-grid { grid-template-columns: 1fr; gap: 10px; margin-bottom: 20px; }
       .option-card { padding: 14px 16px; gap: 12px; }
       .option-letter { width: 36px; height: 36px; font-size: 0.9rem; }
@@ -1748,8 +1945,8 @@
         <div class="q-header">
           <div class="q-header-top">
             <div class="q-count">
-              <span class="current" id="qNum">1</span>
-              <span class="total" id="qTotal">/ 20</span>
+              <span class="current" id="qNum">0</span>
+              <span class="total" id="qTotal">/ 26</span>
             </div>
             <div class="header-buttons">
               <button class="btn btn-gold btn-sm" onclick="endQuiz()">🏆 End Quiz</button>
@@ -1762,36 +1959,49 @@
           </div>
         </div>
         
-        <div class="category-badge" id="category">💡 Category</div>
-        
-        <div class="question-card glass-card compact">
-          <div class="q-number" id="qBadge">Q1</div>
-          <h2 class="question-text" id="qText"></h2>
+        <!-- Team Selection Display - shown when waiting for team to pick question -->
+        <div class="team-selection-display" id="teamSelectionDisplay">
+          <div class="selection-avatar" id="selectionAvatar">🦁</div>
+          <div class="selection-label">CURRENT TURN</div>
+          <div class="selection-team-name" id="selectionTeamName">Alpha</div>
+          <div class="selection-instruction">Please select a Question Number from the sidebar to begin.</div>
         </div>
         
-        <!-- Show which team answered if already answered -->
-        <div class="question-answered-info" id="questionAnsweredInfo" style="display:none;">
-          <div class="qa-item"><span class="qa-label">Ans:</span> <span class="qa-value" id="qaAnswer"></span></div>
-          <div class="qa-item"><span class="qa-label">Team:</span> <span class="qa-value" id="qaTeamName"></span></div>
-          <div class="qa-item"><span class="qa-label">Score:</span> <span class="qa-value" id="qaPoints"></span></div>
-        </div>
-        
-        <div class="options-grid" id="optionsGrid" style="display:none;"></div>
-        
-        <div class="actions-row">
-          <button class="btn btn-secondary btn-sm" id="optBtn" onclick="toggleOptions()">👁️ Options</button>
-          <button class="btn btn-gold btn-sm" onclick="showScreen('reveal')">Reveal →</button>
-        </div>
-        
-        <div class="nav-row">
-          <button class="btn btn-secondary btn-sm" id="prevBtn" onclick="goPrevious()">← Prev</button>
-          <button class="btn btn-secondary btn-sm" id="nextBtn" onclick="goNext()">Next →</button>
-          <button class="btn btn-gold btn-sm" id="resultsBtn" onclick="showScreen('winner')" style="display:none;">🏆 Results</button>
-        </div>
-        
-        <div class="scoring-info glass-card compact">
-          <div>✨ No options: <strong>+2</strong> / <strong>-1</strong></div>
-          <div>💡 With options: <strong>+1</strong> / <strong>-1</strong></div>
+        <!-- Question Content - shown after question is selected -->
+        <div class="question-content" id="questionContent" style="display:none;">
+          <div class="category-badge" id="category">💡 Category</div>
+          
+          <div class="question-card glass-card compact">
+            <div class="q-number" id="qBadge">Q1</div>
+            <div class="question-row">
+              <h2 class="question-text" id="qText"></h2>
+              <div class="expand-trigger" id="expandTrigger" onclick="toggleOptions()">
+                <svg class="expand-chevron" id="expandChevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <polyline points="6 9 12 15 18 9"></polyline>
+                </svg>
+              </div>
+            </div>
+          </div>
+          
+          <div class="options-container" id="optionsContainer">
+            <div class="options-grid" id="optionsGrid"></div>
+          </div>
+          
+          <!-- Show which team answered if already answered -->
+          <div class="question-answered-info" id="questionAnsweredInfo" style="display:none;">
+            <div class="qa-item"><span class="qa-label">Ans:</span> <span class="qa-value" id="qaAnswer"></span></div>
+            <div class="qa-item"><span class="qa-label">Team:</span> <span class="qa-value" id="qaTeamName"></span></div>
+            <div class="qa-item"><span class="qa-label">Score:</span> <span class="qa-value" id="qaPoints"></span></div>
+          </div>
+          
+          <div class="actions-row" id="actionsRow">
+            <button class="btn btn-gold btn-sm" onclick="showScreen('reveal')">Reveal Answer →</button>
+          </div>
+          
+          <div class="scoring-info glass-card compact" id="scoringInfo">
+            <div>✨ No options: <strong>+2</strong> / <strong>-1</strong></div>
+            <div>💡 With options: <strong>+1</strong> / <strong>-1</strong></div>
+          </div>
         </div>
       </div>
 
@@ -1850,6 +2060,17 @@
     </div>
   </div>
 
+  <!-- TIEBREAKER -->
+  <div id="tiebreaker" class="screen">
+    <div class="tiebreaker-content">
+      <div class="tie-icon">⚔️</div>
+      <h1 class="tie-title">TIEBREAKER!</h1>
+      <p class="tie-subtitle">These teams are tied! Assign bonus points to determine the winner.</p>
+      
+      <div class="teams-grid tiebreaker-grid" id="tiedTeamsGrid"></div>
+    </div>
+  </div>
+
   <!-- WINNER -->
   <div id="winner" class="screen">
     <div class="winner-content">
@@ -1905,7 +2126,7 @@
       { cat: 'Machine Learning', q: 'A team says: "We\'ll use ML so we don\'t need rules." What are they underestimating?', opts: ['Infrastructure cost', 'Ongoing data quality and monitoring', 'UI complexity', 'Model size'], ans: 'Ongoing data quality and monitoring', icon: '📊', desc: 'ML replaces explicit rules with patterns learned from data, which requires continuous monitoring. Using ML does not eliminate the need for rules; it often adds the need for new kinds of rules and processes around data quality checks, drift detection, labeling standards, and continuous monitoring of inputs and model performance over time. This means teams frequently underestimate how much ongoing work is required to keep data clean, stable, and reliable so the model continues to behave well in production.\n\nExamples:\n• Spam filters degrading due to data drift\n• Recommendation systems needing retraining' },
       { cat: 'Reinforcement Learning', q: 'Why is reinforcement learning risky outside controlled environments?', opts: ['It needs GPUs', 'Rewards can be poorly defined', 'Training is slow', 'Models are large'], ans: 'Rewards can be poorly defined', icon: '🎮', desc: 'Reinforcement learning optimizes exactly what is rewarded — not necessarily what is intended. Reinforcement learning is risky in the real world because if the reward function is even slightly mis-specified, the agent can learn harmful or unintended behaviors while still maximizing that flawed reward, leading to side effects, reward hacking, or unsafe exploration.\n\nExamples:\n• AI gaming reward systems\n• Systems exploiting unintended shortcuts' },
       { cat: 'Neural Networks', q: 'Why are neural networks hard to fully explain?', opts: ['They use too much data', 'They involve many non-linear transformations', 'They require GPUs', 'They retrain automatically'], ans: 'They involve many non-linear transformations', icon: '🕸️', desc: 'Neural networks distribute logic across layers and weights, not explicit steps. Neural networks apply layers of non-linear activation functions to inputs, creating very complex internal representations that are hard to map to simple human-understandable rules. This layered non-linearity makes it difficult to trace exactly how any specific input leads to a particular output in a fully transparent way.\n\nExamples:\n• Credit scoring models hard to audit\n• Medical AI decisions difficult to justify step-by-step' },
-      { cat: 'NLP', q: 'Which NLP failure is most harmful in production systems?', opts: ['Cannot create 3D Graphics', 'Cannot analyze visual data', 'Confident but incorrect answers', 'Optimize network routing'], ans: 'Confident but incorrect answers', icon: '💬', desc: 'Users tolerate slowness or minor errors, but confident wrong answers destroy trust. In production, NLP systems that produce incorrect outputs while sounding highly confident can mislead users, spread misinformation, and cause serious harm, especially in high-stakes domains like health, finance, or security.\n\nExamples:\n• Legal chatbots hallucinating case law\n• Medical symptom checkers sounding certain but wrong' },
+      { cat: 'NLP', q: 'Which NLP failure is most harmful in production systems?', opts: ['High accuracy on common cases, poor performance on rare ones', 'Occasional grammar errors in long responses', 'Confident responses without reliable source grounding', 'Model refusals on ambiguous queries'], ans: 'Confident responses without reliable source grounding', icon: '💬', desc: 'Users tolerate slowness or minor errors, but confident wrong answers destroy trust. In production, NLP systems that produce incorrect outputs while sounding highly confident can mislead users, spread misinformation, and cause serious harm, especially in high-stakes domains like health, finance, or security.\n\nExamples:\n• Legal chatbots hallucinating case law\n• Medical symptom checkers sounding certain but wrong' },
       { cat: 'Deep Learning', q: 'What does "deep" practically enable in neural networks?', opts: ['Faster training', 'Learning layered abstractions', 'Less data usage', 'Simpler models'], ans: 'Learning layered abstractions', icon: '📚', desc: 'Each layer learns progressively higher-level features. In practice, "deep" means stacking many layers so the network can build hierarchical representations: lower layers learn simple features, and higher layers combine them into more abstract concepts, enabling it to model very complex patterns.\n\nExamples:\n• Vision: edges → shapes → objects\n• Language: characters → words → meaning' },
       { cat: 'AGI vs Narrow AI', q: 'What is the key difference between Narrow AI and Artificial General Intelligence (AGI)?', opts: ['Speed', 'Programming language', 'Training data', 'Scope of cognitive abilities'], ans: 'Scope of cognitive abilities', icon: '🌐', desc: 'Narrow AI is designed to perform specific, limited tasks, while Artificial General Intelligence (AGI) would be able to understand, learn, and apply knowledge across many domains with human-like flexibility and reasoning.\n\nExamples:\n• Letting chatbots make policy decisions\n• Assuming AI "understands" intent' },
       { cat: 'Algorithmic Bias', q: 'An AI matches historical data perfectly but produces biased outcomes. What failed?', opts: ['The model', 'The training process', 'The evaluation criteria', 'Infrastructure'], ans: 'The evaluation criteria', icon: '⚖️', desc: 'Accuracy against past data does not guarantee fairness. The model and training process did what they were asked to do—fit historical data—but the evaluation failed to check for fairness, bias, and downstream impact, so biased behavior was not detected or prevented.\n\nExamples:\n• Hiring systems reinforcing gender bias\n• Lending models replicating redlining' },
@@ -1943,6 +2164,8 @@
     let selectedTeamId = null;
     let confettiShown = false;
     let confettiRunning = false;
+    let currentTeamIndex = 0;
+    let questionRevealed = false;
 
     const $ = id => document.getElementById(id);
     const getLetter = i => String.fromCharCode(65 + i);
@@ -1955,9 +2178,13 @@
       const targetScreen = $(id);
       
       if (currentScreen === targetScreen) {
-        if (id === 'question') updateQuestion();
+        if (id === 'question') {
+          if (!questionRevealed) showTeamSelection();
+          else updateQuestion();
+        }
         if (id === 'reveal') updateReveal();
         if (id === 'winner') updateWinner();
+        if (id === 'tiebreaker') updateTiebreaker();
         return;
       }
       
@@ -1973,16 +2200,21 @@
       if (currentScreen && currentScreen.id === 'reveal' && id === 'question') {
         document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
         targetScreen.classList.add('active');
-        updateQuestion();
+        if (questionRevealed) updateQuestion();
+        else showTeamSelection();
         return;
       }
       
-      // Default transition for other screens (intro, winner)
+      // Default transition for other screens (intro, winner, tiebreaker)
       document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
       targetScreen.classList.add('active');
-      if (id === 'question') updateQuestion();
+      if (id === 'question') {
+        if (!questionRevealed) showTeamSelection();
+        else updateQuestion();
+      }
       if (id === 'reveal') updateReveal();
       if (id === 'winner') updateWinner();
+      if (id === 'tiebreaker') updateTiebreaker();
     }
 
     function startGame() {
@@ -1993,11 +2225,57 @@
         s.teamId = null;
         s.correct = null;
         s.optionsUsed = false;
+        s.points = 0;
       });
       currentQ = 0;
       optionsShown = false;
       optionsUsed = false;
+      currentTeamIndex = 0;
+      questionRevealed = false;
       showScreen('question');
+    }
+
+    function showTeamSelection() {
+      questionRevealed = false;
+      $('teamSelectionDisplay').style.display = 'flex';
+      $('questionContent').style.display = 'none';
+      
+      // Update team display
+      const team = teams[currentTeamIndex];
+      $('selectionTeamName').textContent = team.name;
+      
+      // Handle image or icon
+      if (team.image) {
+        $('selectionAvatar').innerHTML = `<img src="${team.image}" alt="${team.name}">`;
+      } else {
+        $('selectionAvatar').innerHTML = team.icon || '🎯';
+      }
+      
+      updateSidePanel();
+      updateLiveLeaderboard();
+      
+      // Update progress
+      const completed = questionStates.filter(s => s.answered || s.skipped).length;
+      $('progressBar').style.width = (completed / questions.length * 100) + '%';
+      $('qNum').textContent = completed;
+    }
+
+    function revealQuestion(index) {
+      if (questionStates[index].answered) return;
+      
+      currentQ = index;
+      questionRevealed = true;
+      optionsShown = false;
+      optionsUsed = false;
+      
+      $('teamSelectionDisplay').style.display = 'none';
+      $('questionContent').style.display = 'flex';
+      
+      // Reset options
+      $('optionsContainer').classList.remove('show');
+      $('expandChevron').classList.remove('expanded');
+      
+      updateQuestion();
     }
 
     function updateSidePanel() {
@@ -2018,7 +2296,8 @@
           statusClass = 'skipped';
         }
 
-        if (i === currentQ) statusClass += ' active';
+        // Only show active when question is revealed
+        if (i === currentQ && questionRevealed) statusClass += ' active';
 
         return `
           <div class="q-tile ${statusClass}" onclick="goToQuestion(${i})" title="Q${i + 1}: ${q.cat}">
@@ -2030,53 +2309,26 @@
     }
 
     function goToQuestion(index) {
-      if (index === currentQ) return;
-      
-      const direction = index > currentQ ? 'right' : 'left';
-      // For 'right' (forward): current goes left, new comes from right
-      // For 'left' (backward): current goes right, new comes from left
-      const slideOut = direction === 'right' ? '-50px' : '50px';
-      const slideIn = direction === 'right' ? '50px' : '-50px';
-      
-      // If on reveal page, animate that out first
-      const revealScreen = $('reveal');
-      if (revealScreen.classList.contains('active')) {
-        const revealContent = document.querySelector('.reveal-content');
-        revealContent.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
-        revealContent.style.opacity = '0';
-        revealContent.style.transform = `translateX(${slideOut})`;
-        
-        setTimeout(() => {
-          currentQ = index;
-          optionsShown = false;
-          optionsUsed = questionStates[index].optionsUsed || false;
-          
-          document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
-          $('question').classList.add('active');
-          
-          const mainContent = document.querySelector('.main-content');
-          mainContent.style.transition = 'none';
-          mainContent.style.opacity = '0';
-          mainContent.style.transform = `translateX(${slideIn})`;
-          
-          updateQuestion();
-          
-          setTimeout(() => {
-            mainContent.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
-            mainContent.style.opacity = '1';
-            mainContent.style.transform = 'translateX(0)';
-          }, 20);
-          
-          // Reset reveal content
-          revealContent.style.transition = 'none';
-          revealContent.style.opacity = '1';
-          revealContent.style.transform = 'translateX(0)';
-        }, 250);
-      } else {
-        animateToQuestion(index, direction);
+      // If question is already answered, show the question info (read-only view)
+      if (questionStates[index].answered) {
+        currentQ = index;
+        questionRevealed = true;
+        $('teamSelectionDisplay').style.display = 'none';
+        $('questionContent').style.display = 'flex';
+        updateQuestion();
+        if (isMobile()) togglePanel();
+        return;
       }
       
-      if (isMobile()) togglePanel();
+      // If we're in team selection mode, reveal the question
+      if (!questionRevealed) {
+        revealQuestion(index);
+        if (isMobile()) togglePanel();
+        return;
+      }
+      
+      // Otherwise don't allow switching (question is revealed for current team)
+      return;
     }
 
     function togglePanel() {
@@ -2097,20 +2349,25 @@
       $('category').innerHTML = '💡 ' + q.cat;
       $('qBadge').textContent = 'Q' + (currentQ + 1);
       $('qText').textContent = q.q;
-      $('optionsGrid').style.display = 'none';
-      $('optBtn').textContent = '👁️ Options';
+      
+      // Build options
+      $('optionsGrid').innerHTML = q.opts.map((opt, i) => `
+        <div class="option-card glass-card">
+          <div class="option-letter">${getLetter(i)}</div>
+          <div class="option-text">${opt}</div>
+        </div>
+      `).join('');
+      
+      // Reset options state
+      $('optionsContainer').classList.remove('show');
+      $('expandChevron').classList.remove('expanded');
       optionsShown = false;
-      
-      // Show/hide navigation buttons
-      $('prevBtn').style.display = currentQ > 0 ? 'inline-block' : 'none';
-      $('nextBtn').style.display = currentQ < questions.length - 1 ? 'inline-block' : 'none';
-      
-      // Check if all questions are answered - show results button
-      const allDone = questionStates.every(s => s.answered || s.skipped);
-      $('resultsBtn').style.display = allDone ? 'inline-block' : 'none';
       
       // Show answered info if question was already answered
       const answeredInfo = $('questionAnsweredInfo');
+      const actionsRow = $('actionsRow');
+      const scoringInfo = $('scoringInfo');
+      
       if (state.answered) {
         const team = teams.find(t => t.id === state.teamId);
         
@@ -2121,14 +2378,18 @@
         $('qaTeamName').textContent = team.name;
         
         // Calculate and show points
-        const pts = state.correct ? (state.optionsUsed ? +1 : +2) : -1;
+        const pts = state.points || (state.correct ? (state.optionsUsed ? +1 : +2) : -1);
         const pointsEl = $('qaPoints');
         pointsEl.textContent = (pts > 0 ? '+' : '') + pts;
         pointsEl.className = 'qa-value ' + (pts < 0 ? 'negative' : '');
         
         answeredInfo.style.display = 'flex';
+        actionsRow.style.display = 'none';
+        scoringInfo.style.display = 'none';
       } else {
         answeredInfo.style.display = 'none';
+        actionsRow.style.display = 'flex';
+        scoringInfo.style.display = 'flex';
       }
       
       updateSidePanel();
@@ -2153,24 +2414,17 @@
 
     function toggleOptions() {
       optionsShown = !optionsShown;
-      const q = questions[currentQ];
-      const grid = $('optionsGrid');
-      const btn = $('optBtn');
+      const container = $('optionsContainer');
+      const arrow = $('expandChevron');
       
       if (optionsShown) {
         optionsUsed = true;
         questionStates[currentQ].optionsUsed = true;
-        grid.innerHTML = q.opts.map((opt, i) => `
-          <div class="option-card glass-card">
-            <span class="option-letter">${getLetter(i)}</span>
-            <span class="option-text">${opt}</span>
-          </div>
-        `).join('');
-        grid.style.display = 'grid';
-        btn.textContent = '🙈 Hide Options';
+        container.classList.add('show');
+        arrow.classList.add('expanded');
       } else {
-        grid.style.display = 'none';
-        btn.textContent = '👁️ Options';
+        container.classList.remove('show');
+        arrow.classList.remove('expanded');
       }
     }
 
@@ -2398,22 +2652,10 @@
         return;
       }
       
-      // Find next unanswered question
-      let nextQ = currentQ + 1;
-      while (nextQ < questions.length && questionStates[nextQ].answered) {
-        nextQ++;
-      }
+      // Advance to next team
+      currentTeamIndex = (currentTeamIndex + 1) % teams.length;
       
-      if (nextQ >= questions.length) {
-        // Wrap around to find first unanswered
-        nextQ = questionStates.findIndex(s => !s.answered && !s.skipped);
-        if (nextQ === -1) {
-          showScreen('winner');
-          return;
-        }
-      }
-      
-      // Animate left to right: current goes left, new comes from right
+      // Animate out reveal content
       const revealContent = document.querySelector('.reveal-content');
       if (revealContent) {
         revealContent.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
@@ -2422,21 +2664,18 @@
       }
       
       setTimeout(() => {
-        currentQ = nextQ;
-        optionsShown = false;
-        optionsUsed = questionStates[currentQ].optionsUsed || false;
-        
-        // Switch to question screen
+        // Switch to question screen with team selection
         document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
         $('question').classList.add('active');
+        
+        // Show team selection mode
+        showTeamSelection();
         
         // Set up initial state for animation in from right
         const mainContent = document.querySelector('.main-content');
         mainContent.style.transition = 'none';
         mainContent.style.opacity = '0';
         mainContent.style.transform = 'translateX(50px)';
-        
-        updateQuestion();
         
         // Trigger animation in
         setTimeout(() => {
@@ -2607,7 +2846,74 @@
     }
 
     function endQuiz() {
-      showScreen('winner');
+      // Check for ties at the top
+      const sorted = getSorted();
+      const topScore = sorted[0].score;
+      const tiedTeams = sorted.filter(t => t.score === topScore);
+      
+      if (tiedTeams.length > 1) {
+        // There's a tie - show tiebreaker
+        showScreen('tiebreaker');
+      } else {
+        showScreen('winner');
+      }
+    }
+
+    function updateTiebreaker() {
+      const sorted = getSorted();
+      const topScore = sorted[0].score;
+      const tiedTeams = sorted.filter(t => t.score === topScore);
+      
+      const grid = $('tiedTeamsGrid');
+      grid.classList.add('no-hover');
+      
+      grid.innerHTML = tiedTeams.map(t => {
+        const avatarHtml = t.image 
+          ? `<img src="${t.image}" alt="${t.name}" class="team-image">`
+          : `<div class="team-icon">${t.icon}</div>`;
+        const hoverAvatarHtml = t.image 
+          ? `<img src="${t.image}" alt="${t.name}" class="hover-team-image">`
+          : `<span>${t.icon}</span>`;
+        return `
+          <div class="team-card" data-id="${t.id}">
+            ${avatarHtml}
+            <div class="team-name">${t.name}</div>
+            <div class="team-score">${t.score} pts</div>
+            <div class="team-hover">
+              <div class="hover-team-name">${hoverAvatarHtml} ${t.name}</div>
+              <button class="hover-btn correct" onclick="event.stopPropagation(); tiebreakerAward(${t.id}, true)">✓ +1</button>
+              <button class="hover-btn wrong" onclick="event.stopPropagation(); tiebreakerAward(${t.id}, false)">✗ -1</button>
+            </div>
+          </div>
+        `;
+      }).join('');
+      
+      // Remove no-hover class after a short delay to enable hover
+      setTimeout(() => {
+        grid.classList.remove('no-hover');
+      }, 400);
+    }
+
+    function tiebreakerAward(teamId, isBonus) {
+      const team = teams.find(t => t.id === teamId);
+      team.score += isBonus ? 1 : -1;
+      
+      showToast(team.icon, team.name, isBonus ? 1 : -1);
+      
+      // Check if tie is broken
+      setTimeout(() => {
+        const sorted = getSorted();
+        const topScore = sorted[0].score;
+        const tiedTeams = sorted.filter(t => t.score === topScore);
+        
+        if (tiedTeams.length === 1) {
+          // Tie is broken - go to winner
+          showScreen('winner');
+        } else {
+          // Still tied - update display
+          updateTiebreaker();
+        }
+      }, 500);
     }
 
     function restart() {
@@ -2620,12 +2926,15 @@
         s.teamId = null;
         s.correct = null;
         s.optionsUsed = false;
+        s.points = 0;
       });
       currentQ = 0;
       optionsShown = false;
       optionsUsed = false;
       selectedTeamId = null;
       confettiShown = false;
+      currentTeamIndex = 0;
+      questionRevealed = false;
       $('qTotal').textContent = '/ ' + questions.length;
       showScreen('intro');
     }
