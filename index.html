@@ -2593,7 +2593,7 @@
   <div id="tiebreaker" class="screen">
     <div class="tiebreaker-content">
       <div class="tie-icon">⚔️</div>
-      <h1 class="tie-title">TIEBREAKER!</h1>
+      <h1 class="tie-title">It's a Tie!</h1>
       <p class="tie-subtitle">These teams are tied! Assign bonus points to determine the winner.</p>
       
       <div class="teams-grid tiebreaker-grid" id="tiedTeamsGrid"></div>
@@ -2635,9 +2635,9 @@
       { id: 0, name: 'Kiran', score: 0, icon: '🦁', bg: 'linear-gradient(135deg, #FFD700 0%, #FFA500 100%)' },
       { id: 1, name: 'Bala', score: 0, icon: '🐼', bg: 'linear-gradient(135deg, #9B59B6 0%, #8E44AD 100%)' },
       { id: 2, name: 'Anil', score: 0, icon: '🦅', bg: 'linear-gradient(135deg, #3498DB 0%, #2980B9 100%)' },
-      { id: 3, name: 'Pavan', score: 0, icon: '🐘', bg: 'linear-gradient(135deg, #E74C3C 0%, #C0392B 100%)' },
-      { id: 4, name: 'Narayana', score: 0, icon: '🐹', bg: 'linear-gradient(135deg, #1ABC9C 0%, #16A085 100%)' },
-      { id: 5, name: 'Srirag', score: 0, icon: '🐯', bg: 'linear-gradient(135deg, #F39C12 0%, #D68910 100%)' }
+      { id: 3, name: 'Pavan', score: 0, icon: '🐘', bg: 'linear-gradient(135deg, #7F8C8D 0%, #566573 100%)' },
+      { id: 4, name: 'Narayana', score: 0, icon: '🐯', bg: 'linear-gradient(135deg, #F39C12 0%, #D68910 100%)' },
+      { id: 5, name: 'Srirag', score: 0, icon: '🐻‍❄️', bg: 'linear-gradient(135deg, #85C1E9 0%, #5DADE2 100%)' }
     ];
 
     // Helper function to get team avatar HTML (image or icon)
@@ -2667,6 +2667,12 @@
       { cat: 'ImageNet', q: 'What major project co-founded by Dr. Fei-Fei Li advanced computer vision?', opts: ['AlphaGo', 'MNIST', 'CIFAR-10', 'ImageNet'], ans: 'ImageNet', icon: '🖼️', desc: 'Dr. Fei-Fei Li co-founded ImageNet, a massive, labeled image dataset that fueled the deep learning (Data driven learning) revolution in computer vision through the annual ImageNet challenge.\n\nExamples:\n• 14M+ labeled images\n• Standard benchmarking across researchers' },
       { cat: 'AI Pioneers', q: 'Who coined the term "Artificial Intelligence"?', opts: ['Marvin Minsky', 'Alan Turing', 'John McCarthy', 'Geoffrey Hinton'], ans: 'John McCarthy', icon: '🎓', desc: 'John McCarthy coined the term "Artificial Intelligence" in his 1955 proposal for the Dartmouth Conference, which is widely regarded as the birthplace of AI as a field.\n\nExamples:\n• Shift from philosophy to engineering discipline' },
       { cat: 'AI Awards', q: 'In 2025, the Queen Elizabeth Prize for Engineering was awarded for contributions to modern AI/machine learning. How many individuals received the prize, and how many are women?', opts: ['6 recipients; 1 woman', '7 recipients; 1 woman', '7 recipients; 2 women', '8 recipients; 2 women'], ans: '7 recipients; 1 woman', icon: '🏆', desc: 'The 2025 Queen Elizabeth Prize for Engineering was awarded to seven engineers for their seminal contributions to modern machine learning, a cornerstone of AI research and application.' },
+      { cat: 'AI Milestones', q: 'AlphaGo defeated which world champion?', opts: ['Garry Kasparov', 'Ke Jie', 'Fan Hui', 'Lee Sedol'], ans: 'Lee Sedol', icon: '⚫', desc: 'Lee Sedol was an 18-time world champion and one of the strongest Go players in history. The match took place in 2016, and AlphaGo won 4–1. At the time, Go was considered out of reach for computers because it relies heavily on intuition and pattern recognition, not brute-force calculation.' },
+      { cat: 'AI Milestones', q: 'What did AlphaGo defeating the world champion in the Go Game demonstrate?', opts: ['Humans are obsolete', 'Narrow AI can exceed experts in bounded domains', 'AGI is near', 'Strategy games are solved'], ans: 'Narrow AI can exceed experts in bounded domains', icon: '🎯', desc: 'AlphaGo was exceptional at Go — and only Go. It did not understand strategy in general, couldn\'t play chess, and couldn\'t transfer its learning to other domains. This is the hallmark of Narrow AI: extreme competence within a clearly defined problem space.' },
+      { cat: 'AI History', q: 'Which system defeated Garry Kasparov in chess?', opts: ['Deep Blue', 'AlphaZero', 'Stockfish', 'Watson'], ans: 'Deep Blue', icon: '♟️', desc: 'Deep Blue, built by IBM, defeated Garry Kasparov, the reigning world chess champion, in 1997. This was the first time a computer beat a world champion in a classical match under standard tournament conditions. The win marked a milestone for computing power, not machine learning.' },
+      { cat: 'AI History', q: 'How was Deep Blue fundamentally different from AlphaGo?', opts: ['Used learning', 'Relied on brute-force search', 'Generalized intelligence', 'Autonomous reasoning'], ans: 'Relied on brute-force search', icon: '🔍', desc: 'Deep Blue used brute-force search and pre-programmed evaluation functions to analyze millions of positions per second. AlphaGo, in contrast, used deep learning and reinforcement learning to develop intuition-like pattern recognition, representing a fundamental shift in AI approach.' },
+      { cat: 'AI Ethics', q: 'What is the 30% Rule in AI?', opts: ['AI must be accurate 30% of the time', 'AI should replace 30% of human jobs', 'AI should assist humans, but humans must make the final decisions', 'AI models should be trained on 30% data'], ans: 'AI should assist humans, but humans must make the final decisions', icon: '⚖️', desc: 'The 30% rule in AI means AI-generated content should not exceed about 30%, while human thinking, judgment, and decisions must make up the rest. This ensures humans remain in control of critical decisions.' },
+      { cat: 'AI Concepts', q: 'Artificial General Intelligence (AGI) refers to:', opts: ['Supervised learning', 'Augmented intelligence', 'Narrow AI', 'Human-level general intelligence'], ans: 'Human-level general intelligence', icon: '🧠', desc: 'AGI describes a hypothetical AI that can understand, learn, and apply intelligence across a wide range of tasks, the way humans do. Unlike today\'s AI, AGI would be able to transfer knowledge from one domain to another without being retrained from scratch.' },
       { cat: 'Open Source', q: "What is Meta's open-source LLM called?", opts: ['LLaMA', 'Falcon', 'Claude', 'PaLM'], ans: 'LLaMA', icon: '🦙', desc: 'LLaMA = Large Language Model Meta AI.' },
       { cat: 'AI Tech', q: 'What generates AI images from text?', opts: ['Diffusion Models', 'Blockchain', 'Quantum Computing', 'Edge Computing'], ans: 'Diffusion Models', icon: '🖼️', desc: 'Diffusion Models power Stable Diffusion, DALL-E, Midjourney.' },
       { cat: 'AI Companies', q: 'Who created Stable Diffusion?', opts: ['Stability AI', 'OpenAI', 'Google', 'Microsoft'], ans: 'Stability AI', icon: '⚡', desc: 'Stability AI made the open-source Stable Diffusion.' },
