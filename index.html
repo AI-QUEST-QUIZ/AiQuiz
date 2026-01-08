@@ -392,6 +392,19 @@
       white-space: nowrap;
     }
 
+    .q-tile-pts {
+      font-weight: 700;
+      margin-left: 2px;
+    }
+
+    .q-tile-pts.correct {
+      color: #4ade80;
+    }
+
+    .q-tile-pts.wrong {
+      color: #f87171;
+    }
+
     .panel-legend {
       display: flex;
       flex-wrap: wrap;
@@ -520,13 +533,13 @@
     
     .q-number {
       position: absolute;
-      top: -14px;
+      top: -25px;
       left: 50%;
       transform: translateX(-50%);
       padding: 8px 22px;
       background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
       border-radius: 100px;
-      font-size: 0.8rem;
+      font-size: 1.3rem;
       font-weight: 700;
       color: #000;
       box-shadow: 0 4px 20px rgba(255,215,0,0.3);
@@ -793,8 +806,8 @@
       display: flex;
       align-items: center;
       gap: 40px;
-      padding: 40px;
-      margin-bottom: 40px;
+      padding: 25px;
+      margin-bottom: 30px;
       background: linear-gradient(135deg, rgba(16,185,129,0.08) 0%, rgba(16,185,129,0.02) 100%);
       border: 1px solid rgba(16,185,129,0.2);
     }
@@ -829,7 +842,7 @@
       border: 1px solid rgba(16,185,129,0.3);
       border-radius: 100px;
       color: var(--green);
-      font-size: 0.85rem;
+      font-size: 1rem;
       font-weight: 600;
       margin-bottom: 16px;
     }
@@ -848,16 +861,17 @@
     }
     
     .answer-title {
-      font-size: 2.2rem;
+      font-size: 2rem;
       font-weight: 700;
       color: var(--gold);
       margin-bottom: 12px;
     }
     
     .answer-desc {
-      font-size: 1.1rem;
+      font-size: 1rem;
       color: #9ca3af;
-      line-height: 1.6;
+      line-height: 1.7;
+      text-align: left;
     }
     
     .assign-section {
@@ -1112,19 +1126,6 @@
     .action-btn:active {
       transform: scale(0.95) !important;
       transition: transform 0.1s ease;
-    }
-    
-    .skip-btn {
-      margin-top: 16px;
-      padding: 14px 32px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid var(--border);
-      color: var(--text-dim);
-    }
-    
-    .skip-btn:hover {
-      color: var(--text);
-      border-color: rgba(255,255,255,0.2);
     }
 
     /* Already Answered Display */
@@ -1566,7 +1567,7 @@
       .header-buttons .btn { padding: 8px 12px; font-size: 0.75rem; }
       .category-badge { padding: 8px 16px; font-size: 0.8rem; }
       .question-card { padding: 30px 20px; margin-bottom: 20px; }
-      .q-number { padding: 8px 20px; font-size: 0.8rem; top: -14px; }
+      .q-number { padding: 10px 24px; font-size: 1.1rem; top: -20px; }
       .question-text { font-size: 1.2rem; }
       .options-grid { grid-template-columns: 1fr; gap: 10px; margin-bottom: 20px; }
       .option-card { padding: 14px 16px; gap: 12px; }
@@ -1619,8 +1620,6 @@
       .team-icon { font-size: 1.6rem; margin-bottom: 2px; }
       .team-name { font-size: 0.65rem; }
       .team-score { font-size: 0.6rem; }
-      
-      .skip-btn { padding: 10px 20px; font-size: 0.8rem; }
       
       /* Modal */
       .modal { padding: 24px; border-radius: 20px; }
@@ -1750,7 +1749,7 @@
           <div class="q-header-top">
             <div class="q-count">
               <span class="current" id="qNum">1</span>
-              <span class="total">/ 21</span>
+              <span class="total" id="qTotal">/ 20</span>
             </div>
             <div class="header-buttons">
               <button class="btn btn-gold btn-sm" onclick="endQuiz()">🏆 End Quiz</button>
@@ -1815,7 +1814,7 @@
           <span class="fallback-icon" id="fallbackIcon">🤖</span>
         </div>
         <div class="answer-details">
-          <div class="answer-badge">Correct Answer</div>
+          <div class="answer-badge" id="ansBadge">Option C</div>
           <h2 class="answer-title" id="ansTitle"></h2>
           <p class="answer-desc" id="ansDesc"></p>
         </div>
@@ -1841,8 +1840,6 @@
             </button>
           </div>
         </div>
-        
-        <button class="btn skip-btn" id="skipBtnReveal" onclick="skipFromReveal()">Skip → No team answered</button>
         
         <div class="nav-btns">
           <button class="btn btn-secondary" onclick="backToQuestion()">← Back to Question</button>
@@ -1876,7 +1873,7 @@
         </div>
       </div>
       
-      <button class="btn btn-gold" onclick="restart()">🔄 Restart Quest</button>
+      <button class="btn btn-gold" onclick="restart()">🔄 Restart</button>
     </div>
   </div>
 
@@ -1903,17 +1900,22 @@
     }
 
     const questions = [
-      { cat: 'AI Assistants', q: 'Which AI assistant was launched by Microsoft?', opts: ['Copilot', 'Alexa', 'Siri', 'Bixby'], ans: 'Copilot', icon: '💻', desc: 'Microsoft Copilot is integrated into Windows and Office products.' },
-      { cat: 'AI Models', q: 'What does "GPT" stand for in ChatGPT?', opts: ['Generative Pre-trained Transformer', 'General Purpose Technology', 'Graphical Processing Tool', 'Generated Pattern Text'], ans: 'Generative Pre-trained Transformer', icon: '🤖', desc: 'GPT = Generative Pre-trained Transformer by OpenAI.' },
-      { cat: 'AI Companies', q: 'Which company created the AI assistant "Claude"?', opts: ['Anthropic', 'OpenAI', 'Google', 'Meta'], ans: 'Anthropic', icon: '🅰️', desc: 'Anthropic focuses on AI safety research.' },
-      { cat: 'AI History', q: 'Who is considered the "Father of AI"?', opts: ['John McCarthy', 'Alan Turing', 'Marvin Minsky', 'Claude Shannon'], ans: 'John McCarthy', icon: '👨‍💻', desc: 'John McCarthy coined "AI" at Dartmouth in 1956.' },
-      { cat: 'AI Chatbots', q: "What is Google's AI chatbot called?", opts: ['Gemini', 'Bard', 'Grok', 'Copilot'], ans: 'Gemini', icon: '♊', desc: 'Gemini is Google\'s most capable AI model.' },
-      { cat: 'AI Gaming', q: 'Which AI defeated the world Go champion?', opts: ['AlphaGo', 'Deep Blue', 'Watson', 'GPT-4'], ans: 'AlphaGo', icon: '⚫', desc: 'AlphaGo defeated Lee Sedol in 2016.' },
-      { cat: 'AI Terms', q: 'What does "LLM" stand for?', opts: ['Large Language Model', 'Linear Learning Machine', 'Logic Learning Module', 'Language Logic Method'], ans: 'Large Language Model', icon: '📚', desc: 'LLM = Large Language Model.' },
-      { cat: 'AI Founders', q: 'Who co-founded OpenAI with Sam Altman?', opts: ['Elon Musk', 'Bill Gates', 'Mark Zuckerberg', 'Jeff Bezos'], ans: 'Elon Musk', icon: '🚀', desc: 'Elon Musk co-founded OpenAI in 2015.' },
-      { cat: 'AI Problems', q: 'What is it called when AI generates false info?', opts: ['Hallucination', 'Confabulation', 'Fabrication', 'Imagination'], ans: 'Hallucination', icon: '🌀', desc: 'AI Hallucination = generating false but plausible info.' },
-      { cat: 'AI Art', q: 'Which company made DALL-E?', opts: ['OpenAI', 'Google', 'Microsoft', 'Adobe'], ans: 'OpenAI', icon: '🎨', desc: 'OpenAI created DALL-E for text-to-image generation.' },
-      { cat: 'AI Testing', q: 'What does the Turing Test evaluate?', opts: ['Machine intelligence', 'Processing speed', 'Memory capacity', 'Power efficiency'], ans: 'Machine intelligence', icon: '🧪', desc: 'Alan Turing proposed this test in 1950.' },
+      { cat: 'AI Requirements', q: 'When a stakeholder says "this system must be intelligent," what is the most accurate interpretation?', opts: ['It should automate everything', 'It should replace humans', 'It should perform tasks that normally require human intelligence', 'It should replicate human thinking and emotions'], ans: 'It should perform tasks that normally require human intelligence', icon: '🧠', desc: 'In requirements and AI contexts, an "intelligent" system is one that can handle activities such as learning from data, reasoning, problem solving, or decision-making, which are typically associated with human intelligence, not one that fully automates everything, replaces humans, or replicates human emotions.\n\nExamples:\n• Image recognition\n• Language translation\n• Medical diagnosis support' },
+      { cat: 'Turing Test', q: 'If a system passes the Turing Test, what does it NOT guarantee?', opts: ['It can sound human', 'It can reason correctly', 'It can generate language', 'It can fool users'], ans: 'It can reason correctly', icon: '🤖', desc: 'The Turing Test measures appearance of intelligence, not correctness or understanding. Passing the Turing Test only shows that a system can use language in a way that fools human judges into thinking it is human (that it can "sound human" and "fool users"). It does not guarantee genuine reasoning ability or that its answers are logically or factually correct.\n\nExamples:\n• ELIZA fooled users without understanding\n• Modern chatbots can sound confident while hallucinating' },
+      { cat: 'Machine Learning', q: 'A team says: "We\'ll use ML so we don\'t need rules." What are they underestimating?', opts: ['Infrastructure cost', 'Ongoing data quality and monitoring', 'UI complexity', 'Model size'], ans: 'Ongoing data quality and monitoring', icon: '📊', desc: 'ML replaces explicit rules with patterns learned from data, which requires continuous monitoring. Using ML does not eliminate the need for rules; it often adds the need for new kinds of rules and processes around data quality checks, drift detection, labeling standards, and continuous monitoring of inputs and model performance over time. This means teams frequently underestimate how much ongoing work is required to keep data clean, stable, and reliable so the model continues to behave well in production.\n\nExamples:\n• Spam filters degrading due to data drift\n• Recommendation systems needing retraining' },
+      { cat: 'Reinforcement Learning', q: 'Why is reinforcement learning risky outside controlled environments?', opts: ['It needs GPUs', 'Rewards can be poorly defined', 'Training is slow', 'Models are large'], ans: 'Rewards can be poorly defined', icon: '🎮', desc: 'Reinforcement learning optimizes exactly what is rewarded — not necessarily what is intended. Reinforcement learning is risky in the real world because if the reward function is even slightly mis-specified, the agent can learn harmful or unintended behaviors while still maximizing that flawed reward, leading to side effects, reward hacking, or unsafe exploration.\n\nExamples:\n• AI gaming reward systems\n• Systems exploiting unintended shortcuts' },
+      { cat: 'Neural Networks', q: 'Why are neural networks hard to fully explain?', opts: ['They use too much data', 'They involve many non-linear transformations', 'They require GPUs', 'They retrain automatically'], ans: 'They involve many non-linear transformations', icon: '🕸️', desc: 'Neural networks distribute logic across layers and weights, not explicit steps. Neural networks apply layers of non-linear activation functions to inputs, creating very complex internal representations that are hard to map to simple human-understandable rules. This layered non-linearity makes it difficult to trace exactly how any specific input leads to a particular output in a fully transparent way.\n\nExamples:\n• Credit scoring models hard to audit\n• Medical AI decisions difficult to justify step-by-step' },
+      { cat: 'NLP', q: 'Which NLP failure is most harmful in production systems?', opts: ['Cannot create 3D Graphics', 'Cannot analyze visual data', 'Confident but incorrect answers', 'Optimize network routing'], ans: 'Confident but incorrect answers', icon: '💬', desc: 'Users tolerate slowness or minor errors, but confident wrong answers destroy trust. In production, NLP systems that produce incorrect outputs while sounding highly confident can mislead users, spread misinformation, and cause serious harm, especially in high-stakes domains like health, finance, or security.\n\nExamples:\n• Legal chatbots hallucinating case law\n• Medical symptom checkers sounding certain but wrong' },
+      { cat: 'Deep Learning', q: 'What does "deep" practically enable in neural networks?', opts: ['Faster training', 'Learning layered abstractions', 'Less data usage', 'Simpler models'], ans: 'Learning layered abstractions', icon: '📚', desc: 'Each layer learns progressively higher-level features. In practice, "deep" means stacking many layers so the network can build hierarchical representations: lower layers learn simple features, and higher layers combine them into more abstract concepts, enabling it to model very complex patterns.\n\nExamples:\n• Vision: edges → shapes → objects\n• Language: characters → words → meaning' },
+      { cat: 'AGI vs Narrow AI', q: 'What is the key difference between Narrow AI and Artificial General Intelligence (AGI)?', opts: ['Speed', 'Programming language', 'Training data', 'Scope of cognitive abilities'], ans: 'Scope of cognitive abilities', icon: '🌐', desc: 'Narrow AI is designed to perform specific, limited tasks, while Artificial General Intelligence (AGI) would be able to understand, learn, and apply knowledge across many domains with human-like flexibility and reasoning.\n\nExamples:\n• Letting chatbots make policy decisions\n• Assuming AI "understands" intent' },
+      { cat: 'Algorithmic Bias', q: 'An AI matches historical data perfectly but produces biased outcomes. What failed?', opts: ['The model', 'The training process', 'The evaluation criteria', 'Infrastructure'], ans: 'The evaluation criteria', icon: '⚖️', desc: 'Accuracy against past data does not guarantee fairness. The model and training process did what they were asked to do—fit historical data—but the evaluation failed to check for fairness, bias, and downstream impact, so biased behavior was not detected or prevented.\n\nExamples:\n• Hiring systems reinforcing gender bias\n• Lending models replicating redlining' },
+      { cat: 'Data Ethics', q: 'What is the most immediate ethical risk of AI trained on real-world data?', opts: ['Energy usage', 'Job loss', 'Amplifying existing bias', 'Sentience'], ans: 'Amplifying existing bias', icon: '⚠️', desc: 'AI scales whatever patterns exist in data — including harmful ones. When AI is trained on real-world data, it can inherit and then amplify historical and societal biases present in that data, leading to systematically unfair or discriminatory outcomes for certain groups.\n\nExamples:\n• Predictive policing\n• Unequal healthcare recommendations' },
+      { cat: 'Computer Vision', q: 'Why should AI systems that analyze medical images not operate fully autonomously?', opts: ['High latency', 'Model size', 'Risk of false confidence', 'Infrastructure cost'], ans: 'Risk of false confidence', icon: '🏥', desc: 'Medical imaging AI systems often output predictions with high confidence scores that can mislead clinicians into over-relying on them, even when the model is wrong due to edge cases, poor generalization, or unseen data distributions. Human oversight is essential to catch these errors and provide context-specific judgment that AI lacks. Autonomous operation amplifies harm potential in diagnostics where missing a lesion or false positive can directly impact patient treatment.\n\nExamples:\n• Missed fractures delaying treatment\n• False positives leading to unnecessary procedures' },
+      { cat: 'Turing Test', q: 'What problem does the Turing Test not help us evaluate today?', opts: ['Human-like conversation', 'Logical correctness', 'Language fluency', 'Ability to fool users'], ans: 'Logical correctness', icon: '🤖', desc: 'The Turing Test evaluates whether a machine can engage in human-like conversation through text, focusing on indistinguishability from a human rather than verifying the factual accuracy, logical validity, or reasoning depth of its responses. Modern AI systems routinely pass variants of it by mimicking fluency and deception, but they can still produce logically flawed or incorrect outputs without detection by the test.\n\nExamples:\n• ELIZA fooled users without understanding\n• Modern chatbots can pass conversation but hallucinate facts' },
+      { cat: 'Activation Functions', q: 'What is the main purpose of an activation function in a neural network?', opts: ['Adjust weights during training', 'Introduce non-linearity', 'Calculate total error', 'Initialize parameters'], ans: 'Introduce non-linearity', icon: '⚡', desc: 'Without non-linearity, multiple layers behave like a single layer.\n\nExamples:\n• ReLU\n• Sigmoid\n• Tanh' },
+      { cat: 'Unsupervised Learning', q: 'Why is unsupervised learning risky for direct business decisions?', opts: ['Low accuracy', 'Harder to validate correctness', 'High compute cost', 'Poor UX'], ans: 'Harder to validate correctness', icon: '🔍', desc: 'Without ground truth, interpretation becomes subjective. Unsupervised learning identifies patterns like clusters or anomalies without labeled ground truth, making it challenging to confirm if those patterns accurately represent reality or useful business insights. Without clear validation metrics or human judgment, these outputs risk leading to misguided decisions such as flawed customer segments or undetected errors. In contrast, supervised methods have explicit accuracy checks against known labels.\n\nExamples:\n• Customer clusters that look logical but aren\'t actionable\n• Segments shifting with new data' },
+      { cat: 'Large Language Models', q: 'What distinguishes Large Language Models (LLMs) from earlier NLP systems?', opts: ['Single-task specialization', 'Hard-coded grammar rules', 'Massive scale of parameters and training data', 'Ability to train on personal computers'], ans: 'Massive scale of parameters and training data', icon: '📚', desc: 'Large Language Models (LLMs) like GPT series differ from traditional NLP by using billions or trillions of parameters trained on internet-scale text corpora, enabling emergent generalization across tasks via transformer architectures. Earlier systems relied on smaller models with rule-based parsing, statistical features, or task-specific training that couldn\'t capture broad contextual understanding.\n\nExamples:\n• GPT-style models\n• Internet-scale training data' },
+      { cat: 'ImageNet', q: 'What major project co-founded by Dr. Fei-Fei Li advanced computer vision?', opts: ['AlphaGo', 'MNIST', 'CIFAR-10', 'ImageNet'], ans: 'ImageNet', icon: '🖼️', desc: 'Dr. Fei-Fei Li co-founded ImageNet, a massive, labeled image dataset that fueled the deep learning (Data driven learning) revolution in computer vision through the annual ImageNet challenge.\n\nExamples:\n• 14M+ labeled images\n• Standard benchmarking across researchers' },
       { cat: 'AI Terms', q: 'What does "NLP" stand for?', opts: ['Natural Language Processing', 'Neural Learning Protocol', 'Network Logic Program', 'Numeric Logic Processing'], ans: 'Natural Language Processing', icon: '💬', desc: 'NLP = Natural Language Processing.' },
       { cat: 'AI Pioneers', q: 'Who is a "Godfather of Deep Learning"?', opts: ['Geoffrey Hinton', 'Steve Jobs', 'Larry Page', 'Tim Cook'], ans: 'Geoffrey Hinton', icon: '🧠', desc: 'Geoffrey Hinton won Nobel Prize in Physics 2024.' },
       { cat: 'Open Source', q: "What is Meta's open-source LLM called?", opts: ['LLaMA', 'Falcon', 'Claude', 'PaLM'], ans: 'LLaMA', icon: '🦙', desc: 'LLaMA = Large Language Model Meta AI.' },
@@ -2009,7 +2011,8 @@
           statusClass = 'answered';
           const team = teams.find(t => t.id === state.teamId);
           if (team) {
-            teamHtml = `<div class="q-tile-team">${team.name}</div>`;
+            const ptsDisplay = state.points > 0 ? `+${state.points}` : state.points;
+            teamHtml = `<div class="q-tile-team">${team.name} <span class="q-tile-pts ${state.correct ? 'correct' : 'wrong'}">${ptsDisplay}</span></div>`;
           }
         } else if (state.skipped) {
           statusClass = 'skipped';
@@ -2257,7 +2260,12 @@
       
       $('fallbackIcon').textContent = q.icon;
       $('ansTitle').textContent = q.ans;
-      $('ansDesc').textContent = q.desc;
+      $('ansDesc').innerHTML = q.desc.replace(/\n/g, '<br>');
+      
+      // Set option letter badge (Option A, B, C, or D)
+      const ansIndex = q.opts.indexOf(q.ans);
+      const optionLetter = String.fromCharCode(65 + ansIndex); // A, B, C, D
+      $('ansBadge').textContent = 'Option ' + optionLetter;
       
       selectedTeamId = null;
       $('mobileActionPanel').classList.remove('show');
@@ -2293,9 +2301,7 @@
           </div>
         `;
         $('mobileActionPanel').style.display = 'none';
-        $('skipBtnReveal').style.display = 'none';
       } else {
-        $('skipBtnReveal').style.display = '';
         $('mobileActionPanel').style.display = '';
         
         // Add no-hover class to prevent immediate hover on page load
@@ -2372,9 +2378,11 @@
       state.skipped = false;
       state.teamId = teamId;
       state.correct = correct;
+      state.points = pts;
       
       showToast(team.icon, team.name, pts);
       updateLiveLeaderboard();
+      updateSidePanel();
       
       // Go to next question with animation
       setTimeout(() => {
@@ -2618,6 +2626,7 @@
       optionsUsed = false;
       selectedTeamId = null;
       confettiShown = false;
+      $('qTotal').textContent = '/ ' + questions.length;
       showScreen('intro');
     }
   </script>
