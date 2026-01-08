@@ -440,6 +440,40 @@
       background: rgba(255,255,255,0.2);
     }
 
+    /* Last Answered Info */
+    .last-answered-info {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 12px;
+      border-top: 1px solid var(--border);
+      font-size: 0.75rem;
+      background: rgba(255,215,0,0.05);
+      flex-wrap: wrap;
+    }
+
+    .last-answered-label {
+      color: var(--text-dim);
+    }
+
+    .last-answered-q {
+      font-weight: 700;
+      color: var(--gold);
+      background: rgba(255,215,0,0.15);
+      padding: 2px 8px;
+      border-radius: 6px;
+    }
+
+    .last-answered-detail {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .last-answered-detail .arrow {
+      color: var(--text-dim);
+      margin: 0 4px;
+    }
+
     /* Main Content */
     .main-content {
       flex: 1;
@@ -970,11 +1004,110 @@
       color: var(--red);
     }
 
+    /* Continue Game Section */
+    .continue-game-section {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    /* Current Turn Indicator in Teams Panel */
+    .current-turn-indicator {
+      background: linear-gradient(135deg, rgba(255,215,0,0.15) 0%, rgba(255,215,0,0.05) 100%);
+      border: 1px solid rgba(255,215,0,0.3);
+      border-radius: 12px;
+      padding: 12px;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+
+    .turn-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .turn-team {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .turn-avatar {
+      font-size: 1.3rem;
+    }
+
+    .turn-avatar img {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .turn-name {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
     /* ===== REVEAL + AWARD ===== */
     .reveal-content {
       width: 100%;
       max-width: 1100px;
       padding-top: 30px;
+    }
+
+    /* Reveal Screen Side Panel for Current Turn */
+    .reveal-side-panel {
+      position: fixed;
+      top: 40px;
+      right: 40px;
+      background: linear-gradient(135deg, rgba(255,215,0,0.15) 0%, rgba(255,215,0,0.05) 100%);
+      border: 1px solid rgba(255,215,0,0.3);
+      border-radius: 16px;
+      padding: 16px 20px;
+      text-align: center;
+      z-index: 10;
+    }
+
+    .reveal-turn-label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    .reveal-turn-team {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .reveal-turn-avatar {
+      font-size: 1.5rem;
+    }
+
+    .reveal-turn-avatar img {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      object-fit: cover;
+      vertical-align: middle;
+    }
+
+    .reveal-turn-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
     }
     
     .answer-showcase {
@@ -1446,6 +1579,126 @@
     .modal-name { flex: 1; font-weight: 600; }
     .modal-pts { color: var(--gold); font-weight: 700; font-size: 1.1rem; }
 
+    /* Edit Score Modal */
+    .edit-score-modal {
+      max-width: 500px;
+      width: 90%;
+    }
+
+    .edit-field {
+      margin-bottom: 20px;
+    }
+
+    .edit-label {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--text-dim);
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .edit-team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+      gap: 8px;
+    }
+
+    .edit-team-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      padding: 12px 8px;
+      background: rgba(255,255,255,0.05);
+      border: 2px solid transparent;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+      font-family: inherit;
+      color: var(--text);
+    }
+
+    .edit-team-btn:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    .edit-team-btn.selected {
+      border-color: var(--gold);
+      background: rgba(255,215,0,0.1);
+    }
+
+    .edit-team-btn .team-icon {
+      font-size: 1.5rem;
+    }
+
+    .edit-team-btn .team-name {
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+
+    .edit-points-btns {
+      display: flex;
+      gap: 12px;
+    }
+
+    .edit-points-btn {
+      flex: 1;
+      padding: 16px 20px;
+      border: 2px solid transparent;
+      border-radius: 12px;
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 1.3rem;
+      font-weight: 700;
+      transition: all 0.2s;
+      color: var(--text);
+    }
+
+    .edit-points-btn.positive {
+      background: rgba(16,185,129,0.1);
+    }
+
+    .edit-points-btn.positive:hover, .edit-points-btn.positive.selected {
+      background: rgba(16,185,129,0.25);
+      border-color: var(--green);
+    }
+
+    .edit-points-btn.negative {
+      background: rgba(239,68,68,0.1);
+    }
+
+    .edit-points-btn.negative:hover, .edit-points-btn.negative.selected {
+      background: rgba(239,68,68,0.25);
+      border-color: var(--red);
+    }
+
+    .edit-summary {
+      padding: 16px;
+      background: rgba(255,255,255,0.03);
+      border-radius: 12px;
+      margin-bottom: 20px;
+      text-align: center;
+      font-size: 0.95rem;
+    }
+
+    .edit-summary .pts-change {
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .edit-summary .pts-change.positive { color: var(--green); }
+    .edit-summary .pts-change.negative { color: var(--red); }
+
+    .edit-actions {
+      display: flex;
+      gap: 10px;
+    }
+
+    .edit-actions .btn {
+      flex: 1;
+    }
+
     /* ===== TOAST ===== */
     .toast {
       position: fixed;
@@ -1792,6 +2045,18 @@
       
       /* Reveal */
       .reveal-content { padding-top: 15px; }
+      .reveal-side-panel {
+        position: fixed;
+        top: auto;
+        bottom: 20px;
+        right: 20px;
+        padding: 10px 14px;
+        border-radius: 12px;
+      }
+      .reveal-turn-label { font-size: 0.6rem; margin-bottom: 4px; }
+      .reveal-turn-avatar { font-size: 1.2rem; }
+      .reveal-turn-avatar img { width: 24px; height: 24px; }
+      .reveal-turn-name { font-size: 0.9rem; }
       .answer-showcase { flex-direction: column; text-align: center; padding: 20px; gap: 16px; margin-bottom: 20px; }
       .answer-image { width: 100px; height: 100px; }
       .answer-image .fallback-icon { font-size: 3rem; }
@@ -1904,6 +2169,34 @@
     </div>
   </div>
 
+  <!-- Edit Score Modal -->
+  <div class="modal-overlay" id="editScoreModal" onclick="closeEditScoreModal()">
+    <div class="modal glass-card edit-score-modal" onclick="event.stopPropagation()">
+      <h2 class="modal-title">✏️ Edit Score for Q<span id="editQNum"></span></h2>
+      
+      <div class="edit-field">
+        <label class="edit-label">Assign to Team:</label>
+        <div class="edit-team-grid" id="editTeamGrid"></div>
+      </div>
+      
+      <div class="edit-field">
+        <label class="edit-label">Points:</label>
+        <div class="edit-points-btns">
+          <button class="edit-points-btn positive" id="editPts2" onclick="setEditPoints(2)">+2</button>
+          <button class="edit-points-btn positive" id="editPts1" onclick="setEditPoints(1)">+1</button>
+          <button class="edit-points-btn negative" id="editPtsMinus1" onclick="setEditPoints(-1)">-1</button>
+        </div>
+      </div>
+      
+      <div class="edit-summary" id="editSummary"></div>
+      
+      <div class="edit-actions">
+        <button class="btn btn-secondary" onclick="closeEditScoreModal()">Cancel</button>
+        <button class="btn btn-gold" onclick="saveEditScore()">Save Changes</button>
+      </div>
+    </div>
+  </div>
+
   <!-- Panel Overlay for mobile -->
   <div class="panel-overlay" id="panelOverlay" onclick="togglePanel()"></div>
 
@@ -1937,6 +2230,11 @@
           <div class="legend-item"><div class="legend-dot current"></div> Current</div>
           <div class="legend-item"><div class="legend-dot answered"></div> Answered</div>
           <div class="legend-item"><div class="legend-dot unanswered"></div> Pending</div>
+        </div>
+        <div class="last-answered-info" id="lastAnsweredInfo" style="display:none;">
+          <span class="last-answered-label">Last Answered:</span>
+          <span class="last-answered-q" id="lastAnsweredQ">Q1</span>
+          <span class="last-answered-detail" id="lastAnsweredDetail">Alpha</span>
         </div>
       </div>
 
@@ -1994,6 +2292,12 @@
             <div class="qa-item"><span class="qa-label">Score:</span> <span class="qa-value" id="qaPoints"></span></div>
           </div>
           
+          <!-- Continue Game button for answered questions -->
+          <div class="continue-game-section" id="continueGameSection" style="display:none;">
+            <button class="btn btn-secondary btn-sm" onclick="openEditScoreModal()">✏️ Edit Score</button>
+            <button class="btn btn-gold" onclick="continueGame()">Continue Game →</button>
+          </div>
+          
           <div class="actions-row" id="actionsRow">
             <button class="btn btn-gold btn-sm" onclick="showScreen('reveal')">Reveal Answer →</button>
           </div>
@@ -2007,6 +2311,13 @@
 
       <!-- Teams Panel (Right Side) -->
       <div class="teams-panel">
+        <div class="current-turn-indicator" id="currentTurnIndicator">
+          <div class="turn-label">Current Turn</div>
+          <div class="turn-team">
+            <span class="turn-avatar" id="turnAvatar">🦁</span>
+            <span class="turn-name" id="turnName">Alpha</span>
+          </div>
+        </div>
         <div class="teams-panel-title">Scores</div>
         <div class="teams-strip" id="teamsStrip"></div>
       </div>
@@ -2018,6 +2329,15 @@
 
   <!-- REVEAL + AWARD -->
   <div id="reveal" class="screen">
+    <!-- Fixed Current Turn Indicator on the side -->
+    <div class="reveal-side-panel" id="revealTurnIndicator">
+      <div class="reveal-turn-label">CURRENT TURN</div>
+      <div class="reveal-turn-team">
+        <span class="reveal-turn-avatar" id="revealTurnAvatar">🦁</span>
+        <span class="reveal-turn-name" id="revealTurnName">Alpha</span>
+      </div>
+    </div>
+    
     <div class="reveal-content">
       <div class="answer-showcase glass-card">
         <div class="answer-image" id="ansImageContainer">
@@ -2155,7 +2475,8 @@
       skipped: false,
       teamId: null,
       correct: null,
-      optionsUsed: false
+      optionsUsed: false,
+      turnTeamId: null
     }));
 
     let currentQ = 0;
@@ -2166,6 +2487,7 @@
     let confettiRunning = false;
     let currentTeamIndex = 0;
     let questionRevealed = false;
+    let lastAnsweredQ = -1;
 
     const $ = id => document.getElementById(id);
     const getLetter = i => String.fromCharCode(65 + i);
@@ -2226,12 +2548,14 @@
         s.correct = null;
         s.optionsUsed = false;
         s.points = 0;
+        s.turnTeamId = null;
       });
       currentQ = 0;
       optionsShown = false;
       optionsUsed = false;
       currentTeamIndex = 0;
       questionRevealed = false;
+      lastAnsweredQ = -1;
       showScreen('question');
     }
 
@@ -2253,6 +2577,7 @@
       
       updateSidePanel();
       updateLiveLeaderboard();
+      updateCurrentTurnIndicator();
       
       // Update progress
       const completed = questionStates.filter(s => s.answered || s.skipped).length;
@@ -2276,6 +2601,26 @@
       $('expandChevron').classList.remove('expanded');
       
       updateQuestion();
+    }
+
+    function continueGame() {
+      // Don't advance team - just return to team selection for current team
+      // Team advancement only happens after actually answering a question (in award function)
+      questionRevealed = false;
+      showTeamSelection();
+    }
+
+    function updateCurrentTurnIndicator() {
+      const team = teams[currentTeamIndex];
+      const turnAvatar = $('turnAvatar');
+      const turnName = $('turnName');
+      
+      if (team.image) {
+        turnAvatar.innerHTML = `<img src="${team.image}" alt="${team.name}">`;
+      } else {
+        turnAvatar.innerHTML = team.icon || '🎯';
+      }
+      turnName.textContent = team.name;
     }
 
     function updateSidePanel() {
@@ -2306,6 +2651,35 @@
           </div>
         `;
       }).join('');
+      
+      updateLastAnsweredInfo();
+    }
+
+    function updateLastAnsweredInfo() {
+      const infoEl = $('lastAnsweredInfo');
+      if (lastAnsweredQ < 0) {
+        infoEl.style.display = 'none';
+        return;
+      }
+      
+      const state = questionStates[lastAnsweredQ];
+      const answeredByTeam = teams.find(t => t.id === state.teamId);
+      const turnTeam = teams.find(t => t.id === state.turnTeamId);
+      
+      if (answeredByTeam) {
+        $('lastAnsweredQ').textContent = 'Q' + (lastAnsweredQ + 1);
+        
+        if (turnTeam && turnTeam.id !== answeredByTeam.id) {
+          // Different team answered than whose turn it was
+          // Case 2: "Beta → Zeta"
+          $('lastAnsweredDetail').innerHTML = `${turnTeam.name} <span class="arrow">→</span> ${answeredByTeam.name}`;
+        } else {
+          // Same team answered their own question
+          // Case 1: "Alpha"
+          $('lastAnsweredDetail').textContent = answeredByTeam.name;
+        }
+        infoEl.style.display = 'flex';
+      }
     }
 
     function goToQuestion(index) {
@@ -2327,8 +2701,12 @@
         return;
       }
       
-      // Otherwise don't allow switching (question is revealed for current team)
-      return;
+      // If a different question is clicked while another is revealed, switch to it
+      if (index !== currentQ) {
+        revealQuestion(index);
+        if (isMobile()) togglePanel();
+        return;
+      }
     }
 
     function togglePanel() {
@@ -2367,6 +2745,7 @@
       const answeredInfo = $('questionAnsweredInfo');
       const actionsRow = $('actionsRow');
       const scoringInfo = $('scoringInfo');
+      const continueSection = $('continueGameSection');
       
       if (state.answered) {
         const team = teams.find(t => t.id === state.teamId);
@@ -2384,26 +2763,29 @@
         pointsEl.className = 'qa-value ' + (pts < 0 ? 'negative' : '');
         
         answeredInfo.style.display = 'flex';
+        continueSection.style.display = 'flex';
         actionsRow.style.display = 'none';
         scoringInfo.style.display = 'none';
       } else {
         answeredInfo.style.display = 'none';
+        continueSection.style.display = 'none';
         actionsRow.style.display = 'flex';
         scoringInfo.style.display = 'flex';
       }
       
       updateSidePanel();
       updateLiveLeaderboard();
+      updateCurrentTurnIndicator();
     }
 
     function updateLiveLeaderboard() {
       const strip = $('teamsStrip');
       if (!strip) return;
       
-      const sorted = getSorted();
-      const maxScore = Math.max(...sorted.map(t => t.score));
+      const maxScore = Math.max(...teams.map(t => t.score));
       
-      strip.innerHTML = sorted.map((t, i) => `
+      // Keep teams in original order, just highlight the leader
+      strip.innerHTML = teams.map((t, i) => `
         <div class="team-chip ${t.score > 0 && t.score === maxScore ? 'leading' : ''}">
           <span class="team-chip-rank">${i + 1}</span>
           <span class="team-chip-name">${t.name}</span>
@@ -2511,6 +2893,16 @@
     function updateReveal() {
       const q = questions[currentQ];
       const state = questionStates[currentQ];
+      
+      // Update current turn indicator on reveal screen
+      const team = teams[currentTeamIndex];
+      const revealTurnAvatar = $('revealTurnAvatar');
+      if (team.image) {
+        revealTurnAvatar.innerHTML = `<img src="${team.image}" alt="${team.name}">`;
+      } else {
+        revealTurnAvatar.innerHTML = team.icon || '🎯';
+      }
+      $('revealTurnName').textContent = team.name;
       
       $('fallbackIcon').textContent = q.icon;
       $('ansTitle').textContent = q.ans;
@@ -2633,10 +3025,15 @@
       state.teamId = teamId;
       state.correct = correct;
       state.points = pts;
+      state.turnTeamId = teams[currentTeamIndex].id; // Track whose turn it was
+      
+      // Track last answered question
+      lastAnsweredQ = currentQ;
       
       showToast(team.icon, team.name, pts);
       updateLiveLeaderboard();
       updateSidePanel();
+      updateLastAnsweredInfo();
       
       // Go to next question with animation
       setTimeout(() => {
@@ -2750,9 +3147,10 @@
     }
 
     function openModal() {
-      $('modalTeams').innerHTML = getSorted().map((t, i) => `
-        <div class="modal-team ${i === 0 ? 'top' : ''}">
-          <span class="modal-rank">${getRank(i)}</span>
+      const maxScore = Math.max(...teams.map(t => t.score));
+      $('modalTeams').innerHTML = teams.map((t, i) => `
+        <div class="modal-team ${t.score > 0 && t.score === maxScore ? 'top' : ''}">
+          <span class="modal-rank">${i + 1}</span>
           <span class="modal-icon">${t.icon}</span>
           <span class="modal-name">${t.name}</span>
           <span class="modal-pts">${t.score}</span>
@@ -2763,6 +3161,115 @@
 
     function closeModal() {
       $('modalOverlay').classList.remove('show');
+    }
+
+    // Edit Score Modal
+    let editState = {
+      teamId: null,
+      points: 2
+    };
+
+    function openEditScoreModal() {
+      const state = questionStates[currentQ];
+      const q = questions[currentQ];
+      
+      // Initialize edit state with current values
+      editState.teamId = state.teamId;
+      editState.points = state.points || 2;
+      
+      $('editQNum').textContent = currentQ + 1;
+      
+      // Build team grid
+      $('editTeamGrid').innerHTML = teams.map(t => {
+        const iconHtml = t.image 
+          ? `<img src="${t.image}" alt="${t.name}" style="width:32px;height:32px;border-radius:50%;object-fit:cover;">`
+          : `<span class="team-icon">${t.icon}</span>`;
+        return `
+          <button class="edit-team-btn ${t.id === editState.teamId ? 'selected' : ''}" onclick="setEditTeam(${t.id})">
+            ${iconHtml}
+            <span class="team-name">${t.name}</span>
+          </button>
+        `;
+      }).join('');
+      
+      // Set points buttons
+      updateEditPointsButtons();
+      updateEditSummary();
+      
+      $('editScoreModal').classList.add('show');
+    }
+
+    function closeEditScoreModal() {
+      $('editScoreModal').classList.remove('show');
+    }
+
+    function setEditTeam(teamId) {
+      editState.teamId = teamId;
+      document.querySelectorAll('.edit-team-btn').forEach(btn => btn.classList.remove('selected'));
+      document.querySelector(`.edit-team-btn[onclick="setEditTeam(${teamId})"]`).classList.add('selected');
+      updateEditSummary();
+    }
+
+    function setEditPoints(pts) {
+      editState.points = pts;
+      updateEditPointsButtons();
+      updateEditSummary();
+    }
+
+    function updateEditPointsButtons() {
+      $('editPts2').classList.toggle('selected', editState.points === 2);
+      $('editPts1').classList.toggle('selected', editState.points === 1);
+      $('editPtsMinus1').classList.toggle('selected', editState.points === -1);
+    }
+
+    function updateEditSummary() {
+      const team = teams.find(t => t.id === editState.teamId);
+      const pts = editState.points;
+      const ptsClass = pts > 0 ? 'positive' : 'negative';
+      const ptsDisplay = pts > 0 ? `+${pts}` : pts;
+      
+      if (team) {
+        $('editSummary').innerHTML = `
+          <strong>${team.name}</strong> will receive 
+          <span class="pts-change ${ptsClass}">${ptsDisplay} pts</span>
+        `;
+      } else {
+        $('editSummary').innerHTML = 'Please select a team';
+      }
+    }
+
+    function saveEditScore() {
+      if (editState.teamId === null) {
+        alert('Please select a team');
+        return;
+      }
+      
+      const state = questionStates[currentQ];
+      const oldTeam = teams.find(t => t.id === state.teamId);
+      const newTeam = teams.find(t => t.id === editState.teamId);
+      
+      // Reverse old score
+      if (oldTeam && state.points !== undefined) {
+        oldTeam.score -= state.points;
+      }
+      
+      // Apply new score
+      const newPts = editState.points;
+      newTeam.score += newPts;
+      
+      // Update state
+      state.teamId = editState.teamId;
+      state.correct = newPts > 0;
+      state.optionsUsed = newPts === 1;
+      state.points = newPts;
+      
+      // Close modal and refresh
+      closeEditScoreModal();
+      updateQuestion();
+      updateSidePanel();
+      updateLiveLeaderboard();
+      
+      showToast(newTeam.icon || '✏️', 'Score Updated', newPts);
     }
 
     // Confetti animation
@@ -2927,6 +3434,7 @@
         s.correct = null;
         s.optionsUsed = false;
         s.points = 0;
+        s.turnTeamId = null;
       });
       currentQ = 0;
       optionsShown = false;
@@ -2935,6 +3443,7 @@
       confettiShown = false;
       currentTeamIndex = 0;
       questionRevealed = false;
+      lastAnsweredQ = -1;
       $('qTotal').textContent = '/ ' + questions.length;
       showScreen('intro');
     }
