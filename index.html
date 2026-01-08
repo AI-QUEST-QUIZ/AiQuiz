@@ -720,19 +720,23 @@
     /* Tiebreaker Screen */
     .tiebreaker-content {
       text-align: center;
-      padding: 40px 20px;
+      padding: 30px 20px;
       max-width: 1000px;
       margin: 0 auto;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      min-height: 100vh;
+      min-height: auto;
+    }
+
+    #tiebreaker.screen {
+      justify-content: center;
     }
 
     .tie-icon {
-      font-size: 5rem;
-      margin-bottom: 20px;
+      font-size: 4rem;
+      margin-bottom: 16px;
       animation: shake 0.5s ease-in-out infinite alternate;
     }
 
@@ -742,22 +746,119 @@
     }
 
     .tie-title {
-      font-size: 3rem;
+      font-size: 2.5rem;
       font-weight: 800;
       color: var(--gold);
-      margin-bottom: 10px;
+      margin-bottom: 8px;
       text-shadow: 0 4px 20px rgba(255,215,0,0.3);
     }
 
     .tie-subtitle {
-      font-size: 1.1rem;
+      font-size: 1rem;
       color: var(--text-dim);
-      margin-bottom: 40px;
+      margin-bottom: 30px;
     }
 
     .tiebreaker-grid {
       justify-content: center;
       max-width: 800px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+
+    /* Tiebreaker Team Cards */
+    .tiebreaker-team-card {
+      background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 100%);
+      border: 2px solid rgba(255,215,0,0.3);
+      border-radius: 18px;
+      padding: 20px 24px;
+      text-align: center;
+      min-width: 180px;
+    }
+
+    .tiebreaker-team-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .tiebreaker-team-card .team-icon {
+      font-size: 2.5rem;
+      margin-bottom: 0;
+    }
+
+    .tiebreaker-team-card .team-image {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid rgba(255,215,0,0.3);
+    }
+
+    .tiebreaker-team-info {
+      text-align: left;
+    }
+
+    .tiebreaker-team-name {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 2px;
+    }
+
+    .tiebreaker-team-score {
+      font-size: 0.85rem;
+      color: var(--gold);
+      font-weight: 600;
+    }
+
+    .tiebreaker-team-actions {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    .tiebreaker-btn {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 10px;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .tiebreaker-btn:active {
+      transform: scale(0.95);
+    }
+
+    .tiebreaker-btn.bonus {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: white;
+      border: none;
+    }
+
+    .tiebreaker-btn.bonus:hover {
+      background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+      transform: scale(1.05);
+    }
+
+    .tiebreaker-btn.penalty {
+      background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+      color: white;
+      border: none;
+    }
+
+    .tiebreaker-btn.penalty:hover {
+      background: linear-gradient(135deg, #f87171 0%, #ef4444 100%);
+      transform: scale(1.05);
+    }
+
+    .tiebreaker-pts {
+      font-size: 1.3rem;
+      font-weight: 800;
     }
     
     .options-grid {
@@ -1059,7 +1160,11 @@
     .reveal-content {
       width: 100%;
       max-width: 1100px;
-      padding-top: 30px;
+      padding-top: 20px;
+    }
+
+    #reveal.screen {
+      padding: 20px 40px;
     }
 
     /* Reveal Screen Side Panel for Current Turn */
@@ -1115,14 +1220,14 @@
       align-items: center;
       gap: 40px;
       padding: 25px;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
       background: linear-gradient(135deg, rgba(16,185,129,0.08) 0%, rgba(16,185,129,0.02) 100%);
       border: 1px solid rgba(16,185,129,0.2);
     }
     
     .answer-image {
-      width: 200px;
-      height: 200px;
+      width: 160px;
+      height: 160px;
       border-radius: 20px;
       overflow: hidden;
       flex-shrink: 0;
@@ -1205,8 +1310,8 @@
       justify-content: center;
       gap: 16px;
       flex-wrap: wrap;
-      margin-bottom: 24px;
-      padding: 20px 10px;
+      margin-bottom: 16px;
+      padding: 10px;
     }
 
     .teams-grid.no-hover .team-hover {
@@ -1373,6 +1478,110 @@
       background: linear-gradient(135deg, rgba(255,215,0,0.1) 0%, rgba(255,215,0,0.03) 100%);
       border: 1px solid rgba(255,215,0,0.2);
     }
+
+    /* Current Team Card - Single team display on reveal screen */
+    .current-team-card {
+      background: linear-gradient(135deg, rgba(255,215,0,0.1) 0%, rgba(255,215,0,0.03) 100%);
+      border: 2px solid rgba(255,215,0,0.3);
+      border-radius: 20px;
+      padding: 20px 28px;
+      text-align: center;
+      max-width: 380px;
+      margin: 0 auto;
+    }
+
+    .current-team-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+
+    .current-team-card .team-icon {
+      font-size: 3rem;
+      margin-bottom: 0;
+    }
+
+    .current-team-card .team-image {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid rgba(255,215,0,0.3);
+    }
+
+    .current-team-info {
+      text-align: left;
+    }
+
+    .current-team-name {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--gold);
+      margin-bottom: 2px;
+    }
+
+    .current-team-score {
+      font-size: 0.9rem;
+      color: var(--text-dim);
+    }
+
+    .current-team-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .score-btn {
+      padding: 16px 20px;
+      border: none;
+      border-radius: 14px;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .score-btn:active {
+      transform: scale(0.95);
+    }
+
+    .score-btn.correct {
+      background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      color: white;
+      border: none;
+    }
+
+    .score-btn.correct:hover {
+      background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+      transform: scale(1.03);
+    }
+
+    .score-btn.wrong {
+      background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+      color: white;
+      border: none;
+    }
+
+    .score-btn.wrong:hover {
+      background: linear-gradient(135deg, #f87171 0%, #ef4444 100%);
+      transform: scale(1.03);
+    }
+
+    .score-pts {
+      font-size: 1.6rem;
+      font-weight: 800;
+    }
+
+    .score-label {
+      font-size: 0.85rem;
+      font-weight: 600;
+      opacity: 0.9;
+    }
     
     .selected-team-info {
       display: flex;
@@ -1504,7 +1713,7 @@
     .nav-btns {
       display: flex;
       gap: 12px;
-      margin-top: 20px;
+      margin-top: 10px;
       justify-content: center;
       flex-wrap: wrap;
     }
@@ -2423,13 +2632,12 @@
     // To use an image instead of emoji, add 'image' property with URL
     // Example: { id: 0, name: 'Alpha', score: 0, image: 'https://example.com/avatar.png', bg: '...' }
     const teams = [
-      { id: 0, name: 'Alpha', score: 0, icon: '🦁', bg: 'linear-gradient(135deg, #FFD700 0%, #FFA500 100%)' },
-      { id: 1, name: 'Beta', score: 0, icon: '🐼', bg: 'linear-gradient(135deg, #9B59B6 0%, #8E44AD 100%)' },
-      { id: 2, name: 'Gamma', score: 0, icon: '🦅', bg: 'linear-gradient(135deg, #3498DB 0%, #2980B9 100%)' },
-      { id: 3, name: 'Delta', score: 0, icon: '🐘', bg: 'linear-gradient(135deg, #E74C3C 0%, #C0392B 100%)' },
-      { id: 4, name: 'Epsilon', score: 0, icon: '🐹', bg: 'linear-gradient(135deg, #1ABC9C 0%, #16A085 100%)' },
-      { id: 5, name: 'Zeta', score: 0, icon: '🐯', bg: 'linear-gradient(135deg, #F39C12 0%, #D68910 100%)' },
-      { id: 6, name: 'Omega', score: 0, icon: '🦈', bg: 'linear-gradient(135deg, #E91E63 0%, #AD1457 100%)' }
+      { id: 0, name: 'Kiran', score: 0, icon: '🦁', bg: 'linear-gradient(135deg, #FFD700 0%, #FFA500 100%)' },
+      { id: 1, name: 'Bala', score: 0, icon: '🐼', bg: 'linear-gradient(135deg, #9B59B6 0%, #8E44AD 100%)' },
+      { id: 2, name: 'Anil', score: 0, icon: '🦅', bg: 'linear-gradient(135deg, #3498DB 0%, #2980B9 100%)' },
+      { id: 3, name: 'Pavan', score: 0, icon: '🐘', bg: 'linear-gradient(135deg, #E74C3C 0%, #C0392B 100%)' },
+      { id: 4, name: 'Narayana', score: 0, icon: '🐹', bg: 'linear-gradient(135deg, #1ABC9C 0%, #16A085 100%)' },
+      { id: 5, name: 'Srirag', score: 0, icon: '🐯', bg: 'linear-gradient(135deg, #F39C12 0%, #D68910 100%)' }
     ];
 
     // Helper function to get team avatar HTML (image or icon)
@@ -2457,8 +2665,8 @@
       { cat: 'Unsupervised Learning', q: 'Why is unsupervised learning risky for direct business decisions?', opts: ['Low accuracy', 'Harder to validate correctness', 'High compute cost', 'Poor UX'], ans: 'Harder to validate correctness', icon: '🔍', desc: 'Without ground truth, interpretation becomes subjective. Unsupervised learning identifies patterns like clusters or anomalies without labeled ground truth, making it challenging to confirm if those patterns accurately represent reality or useful business insights. Without clear validation metrics or human judgment, these outputs risk leading to misguided decisions such as flawed customer segments or undetected errors. In contrast, supervised methods have explicit accuracy checks against known labels.\n\nExamples:\n• Customer clusters that look logical but aren\'t actionable\n• Segments shifting with new data' },
       { cat: 'Large Language Models', q: 'What distinguishes Large Language Models (LLMs) from earlier NLP systems?', opts: ['Single-task specialization', 'Hard-coded grammar rules', 'Massive scale of parameters and training data', 'Ability to train on personal computers'], ans: 'Massive scale of parameters and training data', icon: '📚', desc: 'Large Language Models (LLMs) like GPT series differ from traditional NLP by using billions or trillions of parameters trained on internet-scale text corpora, enabling emergent generalization across tasks via transformer architectures. Earlier systems relied on smaller models with rule-based parsing, statistical features, or task-specific training that couldn\'t capture broad contextual understanding.\n\nExamples:\n• GPT-style models\n• Internet-scale training data' },
       { cat: 'ImageNet', q: 'What major project co-founded by Dr. Fei-Fei Li advanced computer vision?', opts: ['AlphaGo', 'MNIST', 'CIFAR-10', 'ImageNet'], ans: 'ImageNet', icon: '🖼️', desc: 'Dr. Fei-Fei Li co-founded ImageNet, a massive, labeled image dataset that fueled the deep learning (Data driven learning) revolution in computer vision through the annual ImageNet challenge.\n\nExamples:\n• 14M+ labeled images\n• Standard benchmarking across researchers' },
-      { cat: 'AI Terms', q: 'What does "NLP" stand for?', opts: ['Natural Language Processing', 'Neural Learning Protocol', 'Network Logic Program', 'Numeric Logic Processing'], ans: 'Natural Language Processing', icon: '💬', desc: 'NLP = Natural Language Processing.' },
-      { cat: 'AI Pioneers', q: 'Who is a "Godfather of Deep Learning"?', opts: ['Geoffrey Hinton', 'Steve Jobs', 'Larry Page', 'Tim Cook'], ans: 'Geoffrey Hinton', icon: '🧠', desc: 'Geoffrey Hinton won Nobel Prize in Physics 2024.' },
+      { cat: 'AI Pioneers', q: 'Who coined the term "Artificial Intelligence"?', opts: ['Marvin Minsky', 'Alan Turing', 'John McCarthy', 'Geoffrey Hinton'], ans: 'John McCarthy', icon: '🎓', desc: 'John McCarthy coined the term "Artificial Intelligence" in his 1955 proposal for the Dartmouth Conference, which is widely regarded as the birthplace of AI as a field.\n\nExamples:\n• Shift from philosophy to engineering discipline' },
+      { cat: 'AI Awards', q: 'In 2025, the Queen Elizabeth Prize for Engineering was awarded for contributions to modern AI/machine learning. How many individuals received the prize, and how many are women?', opts: ['6 recipients; 1 woman', '7 recipients; 1 woman', '7 recipients; 2 women', '8 recipients; 2 women'], ans: '7 recipients; 1 woman', icon: '🏆', desc: 'The 2025 Queen Elizabeth Prize for Engineering was awarded to seven engineers for their seminal contributions to modern machine learning, a cornerstone of AI research and application.' },
       { cat: 'Open Source', q: "What is Meta's open-source LLM called?", opts: ['LLaMA', 'Falcon', 'Claude', 'PaLM'], ans: 'LLaMA', icon: '🦙', desc: 'LLaMA = Large Language Model Meta AI.' },
       { cat: 'AI Tech', q: 'What generates AI images from text?', opts: ['Diffusion Models', 'Blockchain', 'Quantum Computing', 'Edge Computing'], ans: 'Diffusion Models', icon: '🖼️', desc: 'Diffusion Models power Stable Diffusion, DALL-E, Midjourney.' },
       { cat: 'AI Companies', q: 'Who created Stable Diffusion?', opts: ['Stability AI', 'OpenAI', 'Google', 'Microsoft'], ans: 'Stability AI', icon: '⚡', desc: 'Stability AI made the open-source Stable Diffusion.' },
@@ -2950,34 +3158,36 @@
       } else {
         $('mobileActionPanel').style.display = '';
         
-        // Add no-hover class to prevent immediate hover on page load
-        $('teamsGrid').classList.add('no-hover');
+        // Only show the current turn's team
+        const t = teams[currentTeamIndex];
+        const avatarHtml = t.image 
+          ? `<img src="${t.image}" alt="${t.name}" class="team-image">`
+          : `<div class="team-icon">${t.icon}</div>`;
         
-        $('teamsGrid').innerHTML = teams.map(t => {
-          const avatarHtml = t.image 
-            ? `<img src="${t.image}" alt="${t.name}" class="team-image">`
-            : `<div class="team-icon">${t.icon}</div>`;
-          const hoverAvatarHtml = t.image 
-            ? `<img src="${t.image}" alt="${t.name}" class="hover-team-image">`
-            : `<span>${t.icon}</span>`;
-          return `
-            <div class="team-card" data-id="${t.id}" onclick="selectTeam(${t.id})">
+        $('teamsGrid').innerHTML = `
+          <div class="current-team-card">
+            <div class="current-team-header">
               ${avatarHtml}
-              <div class="team-name">${t.name}</div>
-              <div class="team-score">${t.score} pts</div>
-              <div class="team-hover">
-                <div class="hover-team-name">${hoverAvatarHtml} ${t.name}</div>
-                <button class="hover-btn correct" onclick="event.stopPropagation(); award(${t.id}, true)">✓ ${correctPts}</button>
-                <button class="hover-btn wrong" onclick="event.stopPropagation(); award(${t.id}, false)">✗ ${wrongPts}</button>
+              <div class="current-team-info">
+                <div class="current-team-name">${t.name}</div>
+                <div class="current-team-score">${t.score} pts</div>
               </div>
             </div>
-          `;
-        }).join('');
+            <div class="current-team-actions">
+              <button class="score-btn correct" onclick="award(${t.id}, true)">
+                <span class="score-pts">${correctPts}</span>
+                <span class="score-label">Correct</span>
+              </button>
+              <button class="score-btn wrong" onclick="award(${t.id}, false)">
+                <span class="score-pts">${wrongPts}</span>
+                <span class="score-label">Wrong</span>
+              </button>
+            </div>
+          </div>
+        `;
         
-        // Remove no-hover class after a short delay to enable hover
-        setTimeout(() => {
-          $('teamsGrid').classList.remove('no-hover');
-        }, 400);
+        // Hide mobile action panel since we have inline buttons now
+        $('mobileActionPanel').style.display = 'none';
       }
     }
 
@@ -3372,33 +3582,31 @@
       const tiedTeams = sorted.filter(t => t.score === topScore);
       
       const grid = $('tiedTeamsGrid');
-      grid.classList.add('no-hover');
       
       grid.innerHTML = tiedTeams.map(t => {
         const avatarHtml = t.image 
           ? `<img src="${t.image}" alt="${t.name}" class="team-image">`
           : `<div class="team-icon">${t.icon}</div>`;
-        const hoverAvatarHtml = t.image 
-          ? `<img src="${t.image}" alt="${t.name}" class="hover-team-image">`
-          : `<span>${t.icon}</span>`;
         return `
-          <div class="team-card" data-id="${t.id}">
-            ${avatarHtml}
-            <div class="team-name">${t.name}</div>
-            <div class="team-score">${t.score} pts</div>
-            <div class="team-hover">
-              <div class="hover-team-name">${hoverAvatarHtml} ${t.name}</div>
-              <button class="hover-btn correct" onclick="event.stopPropagation(); tiebreakerAward(${t.id}, true)">✓ +1</button>
-              <button class="hover-btn wrong" onclick="event.stopPropagation(); tiebreakerAward(${t.id}, false)">✗ -1</button>
+          <div class="tiebreaker-team-card">
+            <div class="tiebreaker-team-header">
+              ${avatarHtml}
+              <div class="tiebreaker-team-info">
+                <div class="tiebreaker-team-name">${t.name}</div>
+                <div class="tiebreaker-team-score">${t.score} pts</div>
+              </div>
+            </div>
+            <div class="tiebreaker-team-actions">
+              <button class="tiebreaker-btn bonus" onclick="tiebreakerAward(${t.id}, true)">
+                <span class="tiebreaker-pts">+1</span>
+              </button>
+              <button class="tiebreaker-btn penalty" onclick="tiebreakerAward(${t.id}, false)">
+                <span class="tiebreaker-pts">-1</span>
+              </button>
             </div>
           </div>
         `;
       }).join('');
-      
-      // Remove no-hover class after a short delay to enable hover
-      setTimeout(() => {
-        grid.classList.remove('no-hover');
-      }, 400);
     }
 
     function tiebreakerAward(teamId, isBonus) {
