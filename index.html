@@ -353,6 +353,7 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 4px;
+      overflow: hidden;
     }
 
     .q-tile {
@@ -365,10 +366,11 @@
       transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
       background: rgba(255,255,255,0.03);
       border: 1px solid transparent;
-      padding: 8px 4px;
+      padding: 6px 2px;
       position: relative;
       font-size: 0.75rem;
       min-height: 44px;
+      overflow: hidden;
     }
 
     .q-tile:hover {
@@ -413,19 +415,21 @@
     }
 
     .q-tile-team {
-      font-size: 0.45rem;
+      font-size: 0.5rem;
       font-weight: 600;
       margin-top: 2px;
       color: var(--text-dim);
-      max-width: 100%;
+      width: 100%;
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
+      text-align: center;
+      padding: 0 2px;
     }
 
     .q-tile-pts {
       font-weight: 700;
-      margin-left: 2px;
+      margin-left: 1px;
     }
 
     .q-tile-pts.correct {
@@ -2894,7 +2898,7 @@
           const team = teams.find(t => t.id === state.teamId);
           if (team) {
             const ptsDisplay = state.points > 0 ? `+${state.points}` : state.points;
-            teamHtml = `<div class="q-tile-team"><span class="team-label"><span class="prefix">Team</span> <span class="name">${team.name}</span></span> <span class="q-tile-pts ${state.correct ? 'correct' : 'wrong'}">${ptsDisplay}</span></div>`;
+            teamHtml = `<div class="q-tile-team">${team.name} <span class="q-tile-pts ${state.correct ? 'correct' : 'wrong'}">${ptsDisplay}</span></div>`;
           }
         } else if (state.skipped) {
           statusClass = 'skipped';
