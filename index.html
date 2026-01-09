@@ -946,6 +946,18 @@
       justify-content: center;
     }
 
+    .tie-congrats {
+      font-size: 5.5rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--gold) 0%, #FFA500 50%, var(--gold-dark) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 20px;
+      filter: drop-shadow(0 4px 20px rgba(255,215,0,0.4));
+      line-height: 1.1;
+    }
+
     .tie-icon {
       font-size: 4rem;
       margin-bottom: 16px;
@@ -961,76 +973,82 @@
       font-size: 2.5rem;
       font-weight: 800;
       color: var(--gold);
-      margin-bottom: 8px;
+      margin-bottom: 12px;
       text-shadow: 0 4px 20px rgba(255,215,0,0.3);
     }
 
     .tie-subtitle {
-      font-size: 1rem;
+      font-size: 1.2rem;
       color: var(--text-dim);
-      margin-bottom: 30px;
+      margin-bottom: 50px;
     }
 
     .tiebreaker-grid {
       justify-content: center;
-      max-width: 800px;
+      max-width: 900px;
       display: flex;
       flex-wrap: wrap;
-      gap: 24px;
+      gap: 30px;
     }
 
-    /* Tiebreaker Team Cards */
+    /* Tiebreaker Team Cards - Gold like winner card */
     .tiebreaker-team-card {
-      background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 100%);
-      border: 2px solid rgba(255,215,0,0.3);
-      border-radius: 18px;
-      padding: 20px 24px;
+      background: linear-gradient(135deg, #FFD700 0%, #FFA500 50%, #FFD700 100%);
+      border: none;
+      border-radius: 24px;
+      padding: 35px 50px;
       text-align: center;
-      min-width: 180px;
+      min-width: 240px;
+      box-shadow: 0 8px 32px rgba(255,215,0,0.3);
     }
 
     .tiebreaker-team-header {
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 12px;
-      margin-bottom: 16px;
+      gap: 20px;
+      margin-bottom: 0;
     }
 
     .tiebreaker-team-card .team-icon {
-      font-size: 2.5rem;
+      font-size: 5rem;
       margin-bottom: 0;
     }
 
     .tiebreaker-team-card .team-image {
-      width: 50px;
-      height: 50px;
+      width: 90px;
+      height: 90px;
       border-radius: 50%;
       object-fit: cover;
-      border: 2px solid rgba(255,215,0,0.3);
+      border: 4px solid rgba(0,0,0,0.1);
     }
 
     .tiebreaker-team-info {
-      text-align: left;
+      text-align: center;
     }
 
     .tiebreaker-team-name {
-      font-size: 1.2rem;
+      font-size: 1.6rem;
       font-weight: 800;
-      color: var(--text);
-      margin-bottom: 2px;
+      color: #000;
+      margin-bottom: 0;
+    }
+
+    .tiebreaker-team-name .team-label .prefix {
+      color: rgba(0,0,0,0.6);
+    }
+
+    .tiebreaker-team-name .team-label .name {
+      color: #000;
     }
 
     .tiebreaker-team-score {
-      font-size: 0.85rem;
-      color: var(--gold);
-      font-weight: 600;
+      display: none;
     }
 
     .tiebreaker-team-actions {
-      display: flex;
-      gap: 10px;
-      justify-content: center;
+      display: none;
     }
 
     .tiebreaker-btn {
@@ -2440,10 +2458,13 @@
       
       /* Tiebreaker Mobile */
       .tiebreaker-content { padding: 30px 15px; }
-      .tie-icon { font-size: 3.5rem; }
-      .tie-title { font-size: 2rem; }
-      .tie-subtitle { font-size: 0.95rem; margin-bottom: 30px; }
-      .tiebreaker-grid { max-width: 100%; }
+      .tie-congrats { font-size: 2.8rem; }
+      .tie-title { font-size: 1.8rem; }
+      .tie-subtitle { font-size: 1rem; margin-bottom: 30px; }
+      .tiebreaker-grid { max-width: 100%; gap: 20px; }
+      .tiebreaker-team-card { padding: 25px 30px; min-width: 160px; }
+      .tiebreaker-team-card .team-icon { font-size: 3.5rem; }
+      .tiebreaker-team-name { font-size: 1.3rem; }
       
       .options-grid { grid-template-columns: 1fr; gap: 10px; margin-bottom: 20px; }
       .option-card { padding: 14px 16px; gap: 12px; }
@@ -2822,9 +2843,9 @@
   <!-- TIEBREAKER -->
   <div id="tiebreaker" class="screen">
     <div class="tiebreaker-content">
-      <div class="tie-icon">⚔️</div>
+      <div class="tie-congrats">Congratulations 🏆</div>
       <h1 class="tie-title">It's a Tie!</h1>
-      <p class="tie-subtitle">These teams are tied! Assign bonus points to determine the winner.</p>
+      <p class="tie-subtitle">These teams are tied</p>
       
       <div class="teams-grid tiebreaker-grid" id="tiedTeamsGrid"></div>
     </div>
@@ -2999,7 +3020,7 @@
       { cat: 'Reinforcement Learning', q: 'Why is reinforcement learning risky outside controlled environments?', opts: ['It needs GPUs', 'Training is slow', 'Models are large', 'Rewards can be poorly defined'], ans: 'Rewards can be poorly defined', icon: '🎮', desc: 'Reinforcement learning optimizes exactly what is rewarded — not necessarily what is intended. Reinforcement learning is risky in the real world because if the reward function is even slightly mis-specified, the agent can learn harmful or unintended behaviors while still maximizing that flawed reward, leading to side effects, reward hacking, or unsafe exploration.\n\nExamples:\n• AI gaming reward systems\n• Systems exploiting unintended shortcuts' },
       { cat: 'Neural Networks', q: 'Why are neural networks hard to fully explain?', opts: ['They involve many non-linear transformations', 'They use too much data', 'They require GPUs', 'They retrain automatically'], ans: 'They involve many non-linear transformations', icon: '🕸️', desc: 'Neural networks spread decision logic across many non-linear layers, making it hard to trace outputs back to simple, human-readable rules.\n\nExamples:\n• Credit scoring models hard to audit\n• Medical AI decisions difficult to justify step-by-step' },
       { cat: 'NLP', q: 'Which NLP failure is most harmful in production systems?', opts: ['High accuracy on common cases, poor performance on rare ones', 'Confident responses without reliable source grounding', 'Occasional grammar errors in long responses', 'Model refusals on ambiguous queries'], ans: 'Confident responses without reliable source grounding', icon: '💬', desc: 'In production, NLP systems that produce incorrect outputs while sounding highly confident can mislead users, spread misinformation, and cause serious harm, especially in high-stakes domains like health, finance, or security.\n\nExamples:\n• Legal chatbots hallucinating case law\n• Medical symptom checkers sounding certain but wrong' },
-      { cat: 'AI Agents', q: 'Which sequence best represents AI agent workflow cycle?', opts: ['Observe→Plan→Act→Evaluate', 'Observe→Plan→Act→Reflect', 'Plan→Act→Observe→Reflect', 'Think→Train→Deploy→Monitor'], ans: 'Observe→Plan→Act→Reflect', icon: '🔄', desc: 'Observe → Plan → Act → Reflect means the agent first understands the current input/state, decides the next steps, executes them, then reviews the result to improve the next move.\n\nExamples:\n• Debugging—reads the error log → chooses fixes → edits/runs code → checks if it\'s resolved\n• Trip planning—checks your dates/budget → picks an itinerary → searches/books options → verifies it fits time + cost' },
+      { cat: 'AI Agents', q: 'Which sequence best represents AI agent workflow cycle?', opts: ['Observe→Plan→Act→Evaluate', 'Plan→Act→Observe→Reflect', 'Think→Train→Deploy→Monitor', 'Observe→Plan→Act→Reflect'], ans: 'Observe→Plan→Act→Reflect', icon: '🔄', desc: 'Observe → Plan → Act → Reflect means the agent first understands the current input/state, decides the next steps, executes them, then reviews the result to improve the next move.\n\nExamples:\n• Debugging—reads the error log → chooses fixes → edits/runs code → checks if it\'s resolved\n• Trip planning—checks your dates/budget → picks an itinerary → searches/books options → verifies it fits time + cost' },
       { cat: 'AGI vs Narrow AI', q: 'What is the key difference between Narrow AI and Artificial General Intelligence (AGI)?', opts: ['Speed', 'Scope of cognitive abilities', 'Programming language', 'Training data'], ans: 'Scope of cognitive abilities', icon: '🌐', desc: 'Narrow AI is designed to perform specific, limited tasks, while Artificial General Intelligence (AGI) would be able to understand, learn, and apply knowledge across many domains with human-like flexibility and reasoning.\n\nExamples:\n• Letting chatbots make policy decisions\n• Assuming AI "understands" intent' },
       { cat: 'Algorithmic Bias', q: 'An AI matches historical data perfectly but produces biased outcomes. What failed?', opts: ['The model', 'The training process', 'Infrastructure', 'The evaluation criteria'], ans: 'The evaluation criteria', icon: '⚖️', desc: 'Accuracy against past data does not guarantee fairness. The model and training process did what they were asked to do—fit historical data—but the evaluation failed to check for fairness, bias, and downstream impact, so biased behavior was not detected or prevented.\n\nExamples:\n• Hiring systems reinforcing gender bias\n• Lending models replicating redlining' },
       { cat: 'Data Ethics', q: 'What is the most immediate ethical risk of AI trained on real-world data?', opts: ['Amplifying existing bias', 'Energy usage', 'Job loss', 'Sentience'], ans: 'Amplifying existing bias', icon: '⚠️', desc: 'AI scales whatever patterns exist in data — including harmful ones. When AI is trained on real-world data, it can inherit and then amplify historical and societal biases present in that data, leading to systematically unfair or discriminatory outcomes for certain groups.\n\nExamples:\n• Predictive policing\n• Unequal healthcare recommendations' },
@@ -3960,16 +3981,7 @@
               ${avatarHtml}
               <div class="tiebreaker-team-info">
                 <div class="tiebreaker-team-name"><span class="team-label"><span class="prefix">Team</span> <span class="name">${t.name}</span></span></div>
-                <div class="tiebreaker-team-score">${t.score} pts</div>
               </div>
-            </div>
-            <div class="tiebreaker-team-actions">
-              <button class="tiebreaker-btn bonus" onclick="tiebreakerAward(${t.id}, true)">
-                <span class="tiebreaker-pts">+1</span>
-              </button>
-              <button class="tiebreaker-btn penalty" onclick="tiebreakerAward(${t.id}, false)">
-                <span class="tiebreaker-pts">-1</span>
-              </button>
             </div>
           </div>
         `;
