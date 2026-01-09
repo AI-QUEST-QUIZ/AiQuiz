@@ -30,6 +30,25 @@
       --text: #ffffff;
       --text-dim: #6b7280;
     }
+
+    /* Team name styling - small "team" prefix, larger name */
+    .team-label {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 4px;
+      white-space: nowrap;
+    }
+    .team-label .prefix {
+      font-size: 0.85em;
+      font-weight: 500;
+      opacity: 0.75;
+      text-transform: lowercase;
+      letter-spacing: 0.02em;
+    }
+    .team-label .name {
+      font-size: 1em;
+      font-weight: 700;
+    }
     
     html, body {
       height: 100%;
@@ -138,6 +157,18 @@
 
     /* ===== INTRO ===== */
     .intro-content { text-align: center; padding-top: 80px; }
+
+    .intro-greeting {
+      font-size: clamp(2rem, 5.5vw, 3.2rem);
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--gold) 0%, #FFA500 50%, var(--gold-dark) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 40px;
+      letter-spacing: -0.02em;
+      filter: drop-shadow(0 2px 10px rgba(255,215,0,0.3));
+    }
     
     .logo-container {
       position: relative;
@@ -182,7 +213,7 @@
     }
     
     .title {
-      font-size: clamp(3rem, 8vw, 5rem);
+      font-size: clamp(1.8rem, 5vw, 3rem);
       font-weight: 900;
       letter-spacing: -0.03em;
       margin-bottom: 12px;
@@ -288,14 +319,12 @@
 
     /* ===== SIDE PANEL ===== */
     .side-panel {
-      width: 180px;
+      width: 160px;
       flex-shrink: 0;
       position: sticky;
       top: 15px;
       max-height: calc(100vh - 60px);
-      overflow-y: auto;
-      scrollbar-width: none;
-      -ms-overflow-style: none;
+      overflow: hidden;
     }
 
     .side-panel::-webkit-scrollbar {
@@ -303,13 +332,13 @@
     }
 
     .side-panel-header {
-      padding: 8px 10px;
+      padding: 6px 8px;
       border-bottom: 1px solid var(--border);
-      margin-bottom: 4px;
+      margin-bottom: 2px;
     }
 
     .side-panel-title {
-      font-size: 0.75rem;
+      font-size: 0.7rem;
       font-weight: 700;
       color: var(--gold);
       display: flex;
@@ -318,26 +347,26 @@
     }
 
     .questions-grid {
-      padding: 6px;
+      padding: 4px;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 4px;
+      gap: 3px;
     }
 
     .q-tile {
-      aspect-ratio: 1;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      border-radius: 6px;
+      border-radius: 5px;
       cursor: pointer;
       transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
       background: rgba(255,255,255,0.03);
       border: 1px solid transparent;
-      padding: 2px;
+      padding: 6px 2px;
       position: relative;
-      font-size: 0.75rem;
+      font-size: 0.7rem;
+      min-height: 32px;
     }
 
     .q-tile:hover {
@@ -368,7 +397,7 @@
 
     .q-tile-num {
       font-weight: 700;
-      font-size: 0.85rem;
+      font-size: 0.8rem;
       color: var(--text-dim);
       line-height: 1;
     }
@@ -382,9 +411,9 @@
     }
 
     .q-tile-team {
-      font-size: 0.5rem;
+      font-size: 0.4rem;
       font-weight: 600;
-      margin-top: 2px;
+      margin-top: 1px;
       color: var(--text-dim);
       max-width: 100%;
       overflow: hidden;
@@ -408,8 +437,8 @@
     .panel-legend {
       display: flex;
       flex-wrap: wrap;
-      gap: 6px;
-      padding: 6px 8px;
+      gap: 4px;
+      padding: 4px 6px;
       border-top: 1px solid var(--border);
       margin-top: 2px;
     }
@@ -417,14 +446,14 @@
     .legend-item {
       display: flex;
       align-items: center;
-      gap: 3px;
-      font-size: 0.55rem;
+      gap: 2px;
+      font-size: 0.5rem;
       color: var(--text-dim);
     }
 
     .legend-dot {
-      width: 6px;
-      height: 6px;
+      width: 5px;
+      height: 5px;
       border-radius: 2px;
     }
 
@@ -442,14 +471,7 @@
 
     /* Last Answered Info */
     .last-answered-info {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 10px 12px;
-      border-top: 1px solid var(--border);
-      font-size: 0.75rem;
-      background: rgba(255,215,0,0.05);
-      flex-wrap: wrap;
+      display: none;
     }
 
     .last-answered-label {
@@ -460,8 +482,8 @@
       font-weight: 700;
       color: var(--gold);
       background: rgba(255,215,0,0.15);
-      padding: 2px 8px;
-      border-radius: 6px;
+      padding: 2px 6px;
+      border-radius: 4px;
     }
 
     .last-answered-detail {
@@ -642,12 +664,12 @@
     }
 
     .team-prefix {
-      font-size: 0.5em;
-      font-weight: 600;
+      font-size: 0.65em;
+      font-weight: 500;
       color: rgba(255,255,255,0.6);
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      vertical-align: middle;
+      text-transform: lowercase;
+      letter-spacing: 0.05em;
+      vertical-align: baseline;
     }
 
     .selection-instruction {
@@ -938,7 +960,7 @@
 
     /* ===== TEAMS PANEL (VERTICAL RIGHT SIDE) ===== */
     .teams-panel {
-      width: 200px;
+      width: 220px;
       flex-shrink: 0;
       position: sticky;
       top: 15px;
@@ -974,8 +996,8 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 10px;
-      padding: 12px 14px;
+      gap: 8px;
+      padding: 12px 12px;
       background: rgba(255,255,255,0.03);
       border-radius: 12px;
       border: 1px solid transparent;
@@ -990,14 +1012,17 @@
     .team-chip-rank {
       font-size: 0.8rem;
       color: var(--text-dim);
-      min-width: 18px;
+      min-width: 16px;
+      flex-shrink: 0;
     }
 
     .team-chip-name {
       flex: 1;
-      font-size: 0.95rem;
+      font-size: 0.85rem;
       font-weight: 600;
       color: var(--text);
+      min-width: 0;
+      overflow: hidden;
     }
 
     .team-chip.leading .team-chip-name {
@@ -1008,8 +1033,9 @@
       font-size: 1rem;
       font-weight: 700;
       color: var(--gold);
-      min-width: 24px;
+      min-width: 20px;
       text-align: right;
+      flex-shrink: 0;
     }
 
     /* Transition animation for question change */
@@ -2421,6 +2447,7 @@
   <!-- INTRO -->
   <div id="intro" class="screen active">
     <div class="intro-content">
+      <p class="intro-greeting">Dear Sailr's, Happy 2026!</p>
       <div class="logo-container">
         <div class="logo-ring"></div>
         <div class="logo-ring"></div>
@@ -2428,10 +2455,9 @@
         <div class="logo-icon">🧠</div>
       </div>
       <h1 class="title">
-        <span class="title-ai">AI</span>
-        <span class="title-quest">QUEST</span>
+        <span class="title-quest">Welcome to AI Quest</span>
       </h1>
-      <button class="btn btn-gold" onclick="startGame()">Begin Challenge →</button>
+      <button class="btn btn-gold" onclick="startGame()">Let's Begin!</button>
     </div>
   </div>
 
@@ -2632,7 +2658,7 @@
         </div>
       </div>
       
-      <button class="btn btn-gold" onclick="restart()">🔄 Restart</button>
+      <button class="btn btn-gold" onclick="restart()">🔄 Restart Quest</button>
     </div>
   </div>
 
@@ -2642,11 +2668,11 @@
     // Example: { id: 0, name: 'Alpha', score: 0, image: 'https://example.com/avatar.png', bg: '...' }
     const teams = [
       { id: 0, name: 'Kiran', score: 0, icon: '🦁', bg: 'linear-gradient(135deg, #FFD700 0%, #FFA500 100%)' },
-      { id: 1, name: 'Bala', score: 0, icon: '🐼', bg: 'linear-gradient(135deg, #9B59B6 0%, #8E44AD 100%)' },
+      { id: 1, name: 'Pavan', score: 0, icon: '🐘', bg: 'linear-gradient(135deg, #7F8C8D 0%, #566573 100%)' },
       { id: 2, name: 'Anil', score: 0, icon: '🦅', bg: 'linear-gradient(135deg, #3498DB 0%, #2980B9 100%)' },
-      { id: 3, name: 'Pavan', score: 0, icon: '🐘', bg: 'linear-gradient(135deg, #7F8C8D 0%, #566573 100%)' },
-      { id: 4, name: 'Narayana', score: 0, icon: '🐯', bg: 'linear-gradient(135deg, #F39C12 0%, #D68910 100%)' },
-      { id: 5, name: 'Srirag', score: 0, icon: '🐻‍❄️', bg: 'linear-gradient(135deg, #85C1E9 0%, #5DADE2 100%)' }
+      { id: 3, name: 'Narayana', score: 0, icon: '🐯', bg: 'linear-gradient(135deg, #F39C12 0%, #D68910 100%)' },
+      { id: 4, name: 'Srirag', score: 0, icon: '🐻‍❄️', bg: 'linear-gradient(135deg, #85C1E9 0%, #5DADE2 100%)' },
+      { id: 5, name: 'Bala', score: 0, icon: '🐼', bg: 'linear-gradient(135deg, #9B59B6 0%, #8E44AD 100%)' }
     ];
 
     // Helper function to get team avatar HTML (image or icon)
@@ -2841,7 +2867,7 @@
       } else {
         turnAvatar.innerHTML = team.icon || '🎯';
       }
-      turnName.textContent = team.name;
+      turnName.innerHTML = `<span class="team-label"><span class="prefix">Team</span> <span class="name">${team.name}</span></span>`;
     }
 
     function updateSidePanel() {
@@ -2856,7 +2882,7 @@
           const team = teams.find(t => t.id === state.teamId);
           if (team) {
             const ptsDisplay = state.points > 0 ? `+${state.points}` : state.points;
-            teamHtml = `<div class="q-tile-team">${team.name} <span class="q-tile-pts ${state.correct ? 'correct' : 'wrong'}">${ptsDisplay}</span></div>`;
+            teamHtml = `<div class="q-tile-team"><span class="team-label"><span class="prefix">Team</span> <span class="name">${team.name}</span></span> <span class="q-tile-pts ${state.correct ? 'correct' : 'wrong'}">${ptsDisplay}</span></div>`;
           }
         } else if (state.skipped) {
           statusClass = 'skipped';
@@ -2893,11 +2919,11 @@
         if (turnTeam && turnTeam.id !== answeredByTeam.id) {
           // Different team answered than whose turn it was
           // Case 2: "Beta → Zeta"
-          $('lastAnsweredDetail').innerHTML = `${turnTeam.name} <span class="arrow">→</span> ${answeredByTeam.name}`;
+          $('lastAnsweredDetail').innerHTML = `<span class="team-label"><span class="prefix">Team</span> <span class="name">${turnTeam.name}</span></span> <span class="arrow">→</span> <span class="team-label"><span class="prefix">Team</span> <span class="name">${answeredByTeam.name}</span></span>`;
         } else {
           // Same team answered their own question
           // Case 1: "Alpha"
-          $('lastAnsweredDetail').textContent = answeredByTeam.name;
+          $('lastAnsweredDetail').innerHTML = `<span class="team-label"><span class="prefix">Team</span> <span class="name">${answeredByTeam.name}</span></span>`;
         }
         infoEl.style.display = 'flex';
       }
@@ -2975,7 +3001,7 @@
         $('qaAnswer').textContent = q.ans;
         
         // Show team name
-        $('qaTeamName').textContent = team.name;
+        $('qaTeamName').innerHTML = `<span class="team-label"><span class="prefix">Team</span> <span class="name">${team.name}</span></span>`;
         
         // Calculate and show points
         const pts = state.points || (state.correct ? (state.optionsUsed ? +1 : +2) : -1);
@@ -3009,7 +3035,7 @@
       strip.innerHTML = teams.map((t, i) => `
         <div class="team-chip ${t.score > 0 && t.score === maxScore ? 'leading' : ''}">
           <span class="team-chip-rank">${i + 1}</span>
-          <span class="team-chip-name">${t.name}</span>
+          <span class="team-chip-name"><span class="team-label"><span class="prefix">Team</span> <span class="name">${t.name}</span></span></span>
           <span class="team-chip-score">${t.score}</span>
         </div>
       `).join('');
@@ -3168,7 +3194,7 @@
             <div class="answered-label">Already Answered</div>
             <div class="answered-team">
               ${teamAvatarHtml}
-              <span class="answered-team-name">${answeredTeam.name}</span>
+              <span class="answered-team-name"><span class="team-label"><span class="prefix">Team</span> <span class="name">${answeredTeam.name}</span></span></span>
               <span class="answered-result ${resultClass}">${resultText}</span>
             </div>
           </div>
@@ -3188,7 +3214,7 @@
             <div class="current-team-header">
               ${avatarHtml}
               <div class="current-team-info">
-                <div class="current-team-name">${t.name}</div>
+                <div class="current-team-name"><span class="team-label"><span class="prefix">Team</span> <span class="name">${t.name}</span></span></div>
                 <div class="current-team-score">${t.score} pts</div>
               </div>
             </div>
@@ -3225,7 +3251,7 @@
       } else {
         iconEl.textContent = team.icon;
       }
-      $('selectedTeamName').textContent = team.name;
+      $('selectedTeamName').innerHTML = `<span class="team-label"><span class="prefix">Team</span> <span class="name">${team.name}</span></span>`;
       $('mobileActionPanel').classList.add('show');
       
       // Scroll to action panel on mobile
@@ -3365,9 +3391,13 @@
       }
     }
 
-    function showToast(icon, name, pts) {
+    function showToast(icon, name, pts, isTeamName = true) {
       $('toastIcon').textContent = icon;
-      $('toastText').textContent = name;
+      if (isTeamName) {
+        $('toastText').innerHTML = `<span class="team-label"><span class="prefix">Team</span> <span class="name">${name}</span></span>`;
+      } else {
+        $('toastText').textContent = name;
+      }
       const ptsEl = $('toastPts');
       ptsEl.textContent = (pts > 0 ? '+' : '') + pts + ' pts';
       ptsEl.className = 'toast-pts ' + (pts > 0 ? 'pos' : pts < 0 ? 'neg' : 'zero');
@@ -3381,7 +3411,7 @@
         <div class="modal-team ${t.score > 0 && t.score === maxScore ? 'top' : ''}">
           <span class="modal-rank">${i + 1}</span>
           <span class="modal-icon">${t.icon}</span>
-          <span class="modal-name">${t.name}</span>
+          <span class="modal-name"><span class="team-label"><span class="prefix">Team</span> <span class="name">${t.name}</span></span></span>
           <span class="modal-pts">${t.score}</span>
         </div>
       `).join('');
@@ -3416,7 +3446,7 @@
         return `
           <button class="edit-team-btn ${t.id === editState.teamId ? 'selected' : ''}" onclick="setEditTeam(${t.id})">
             ${iconHtml}
-            <span class="team-name">${t.name}</span>
+            <span class="team-name"><span class="team-label"><span class="prefix">Team</span> <span class="name">${t.name}</span></span></span>
           </button>
         `;
       }).join('');
@@ -3459,7 +3489,7 @@
       
       if (team) {
         $('editSummary').innerHTML = `
-          <strong>${team.name}</strong> will receive 
+          <strong><span class="team-label"><span class="prefix">Team</span> <span class="name">${team.name}</span></span></strong> will receive 
           <span class="pts-change ${ptsClass}">${ptsDisplay} pts</span>
         `;
       } else {
@@ -3498,7 +3528,7 @@
       updateSidePanel();
       updateLiveLeaderboard();
       
-      showToast(newTeam.icon || '✏️', 'Score Updated', newPts);
+      showToast(newTeam.icon || '✏️', 'Score Updated', newPts, false);
     }
 
     // Confetti animation
@@ -3555,7 +3585,7 @@
         winIconEl.textContent = winner.icon;
       }
       
-      $('winName').textContent = winner.name;
+      $('winName').innerHTML = `<span class="team-label"><span class="prefix">Team</span> <span class="name">${winner.name}</span></span>`;
       $('winScore').textContent = winner.score + ' points';
       
       $('finalLeaderboard').innerHTML = sorted.map((t, i) => {
@@ -3567,7 +3597,7 @@
           <div class="final-row ${cls}">
             <span class="final-rank">${getRank(i)}</span>
             ${iconHtml}
-            <span class="final-name">${t.name}</span>
+            <span class="final-name"><span class="team-label"><span class="prefix">Team</span> <span class="name">${t.name}</span></span></span>
             <span class="final-score">${t.score} pts</span>
           </div>
         `;
@@ -3611,7 +3641,7 @@
             <div class="tiebreaker-team-header">
               ${avatarHtml}
               <div class="tiebreaker-team-info">
-                <div class="tiebreaker-team-name">${t.name}</div>
+                <div class="tiebreaker-team-name"><span class="team-label"><span class="prefix">Team</span> <span class="name">${t.name}</span></span></div>
                 <div class="tiebreaker-team-score">${t.score} pts</div>
               </div>
             </div>
