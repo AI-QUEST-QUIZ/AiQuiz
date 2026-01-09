@@ -171,15 +171,15 @@
     
     .logo-container {
       position: relative;
-      width: 200px;
-      height: 200px;
+      width: 160px;
+      height: 160px;
       margin: 0 auto 40px;
     }
     
     .logo-ring {
       position: absolute;
       inset: 0;
-      border: 2px solid rgba(100,150,255,0.4);
+      border: 2px solid rgba(168,85,247,0.4);
       border-radius: 50%;
       animation: ringPulse 3s ease-in-out infinite;
     }
@@ -192,7 +192,7 @@
     
     .logo-ring:nth-child(3) {
       inset: -30px;
-      border-color: rgba(100,150,255,0.2);
+      border-color: rgba(168,85,247,0.2);
       animation-delay: -2s;
     }
     
@@ -207,17 +207,8 @@
       left: 50%;
       transform: translate(-50%, -50%);
       font-size: 70px;
-      filter: drop-shadow(0 0 30px rgba(100,150,255,0.6)) 
-              drop-shadow(0 0 60px rgba(100,150,255,0.4));
-    }
-
-    .logo-image {
-      width: 200px;
-      height: 200px;
-      object-fit: cover;
-      border-radius: 50%;
-      background: transparent;
-      box-shadow: 0 0 40px rgba(100, 150, 255, 0.5), 0 0 80px rgba(100, 150, 255, 0.3);
+      filter: drop-shadow(0 0 30px rgba(255,100,150,0.6)) 
+              drop-shadow(0 0 60px rgba(255,100,150,0.4));
     }
     
     .title {
@@ -2477,7 +2468,7 @@
         <div class="logo-ring"></div>
         <div class="logo-ring"></div>
         <div class="logo-ring"></div>
-        <div class="logo-icon"><img src="images/brain-image.png" alt="AI Brain" class="logo-image"></div>
+        <div class="logo-icon">🧠</div>
       </div>
       <h1 class="title">
         <span class="title-quest">Welcome to AI Quest</span>
@@ -2513,7 +2504,7 @@
           <div class="q-header-top">
             <div class="q-count">
               <span class="current" id="qNum">0</span>
-              <span class="total" id="qTotal">/ --</span>
+              <span class="total" id="qTotal">/ 26</span>
             </div>
             <div class="header-buttons">
               <button class="btn btn-gold btn-sm" onclick="endQuiz()">🏆 End Quiz</button>
@@ -2710,7 +2701,7 @@
 
     const questions = [
       { cat: 'AI Requirements', q: 'When a stakeholder says "this system must be intelligent," what is the most accurate interpretation?', opts: ['It should automate everything', 'It should replace humans', 'It should perform tasks that normally require human intelligence', 'It should replicate human thinking and emotions'], ans: 'It should perform tasks that normally require human intelligence', icon: '🧠', desc: 'In requirements and AI contexts, an "intelligent" system is one that can handle activities such as learning from data, reasoning, problem solving, or decision-making, which are typically associated with human intelligence, not one that fully automates everything, replaces humans, or replicates human emotions.\n\nExamples:\n• Image recognition\n• Language translation\n• Medical diagnosis support' },
-      { cat: 'RAG', q: 'RAG is mainly used to:', opts: ['Train from scratch', 'Retrieve documents to ground responses', 'Compress models', 'Replace databases'], ans: 'Retrieve documents to ground responses', icon: '📄', desc: 'Retrieval-Augmented Generation (RAG) enhances language models by retrieving relevant documents from external knowledge bases before generating responses. This grounds the AI\'s answers in actual source material, reducing hallucinations and enabling more accurate, up-to-date responses.\n\nExamples:\n• Chatbots citing company documentation\n• Legal assistants referencing case law' },
+      { cat: 'Turing Test', q: 'If a system passes the Turing Test, what does it NOT guarantee?', opts: ['It can sound human', 'It can reason correctly', 'It can generate language', 'It can fool users'], ans: 'It can reason correctly', icon: '🤖', desc: 'The Turing Test measures appearance of intelligence, not correctness or understanding. Passing the Turing Test only shows that a system can use language in a way that fools human judges into thinking it is human (that it can "sound human" and "fool users"). It does not guarantee genuine reasoning ability or that its answers are logically or factually correct.\n\nExamples:\n• ELIZA fooled users without understanding\n• Modern chatbots can sound confident while hallucinating' },
       { cat: 'Machine Learning', q: 'A team says: "We\'ll use ML so we don\'t need rules." What are they underestimating?', opts: ['Infrastructure cost', 'Ongoing data quality and monitoring', 'UI complexity', 'Model size'], ans: 'Ongoing data quality and monitoring', icon: '📊', desc: 'ML replaces explicit rules with patterns learned from data, which requires continuous monitoring. Using ML does not eliminate the need for rules; it often adds the need for new kinds of rules and processes around data quality checks, drift detection, labeling standards, and continuous monitoring of inputs and model performance over time. This means teams frequently underestimate how much ongoing work is required to keep data clean, stable, and reliable so the model continues to behave well in production.\n\nExamples:\n• Spam filters degrading due to data drift\n• Recommendation systems needing retraining' },
       { cat: 'Reinforcement Learning', q: 'Why is reinforcement learning risky outside controlled environments?', opts: ['It needs GPUs', 'Rewards can be poorly defined', 'Training is slow', 'Models are large'], ans: 'Rewards can be poorly defined', icon: '🎮', desc: 'Reinforcement learning optimizes exactly what is rewarded — not necessarily what is intended. Reinforcement learning is risky in the real world because if the reward function is even slightly mis-specified, the agent can learn harmful or unintended behaviors while still maximizing that flawed reward, leading to side effects, reward hacking, or unsafe exploration.\n\nExamples:\n• AI gaming reward systems\n• Systems exploiting unintended shortcuts' },
       { cat: 'Neural Networks', q: 'Why are neural networks hard to fully explain?', opts: ['They use too much data', 'They involve many non-linear transformations', 'They require GPUs', 'They retrain automatically'], ans: 'They involve many non-linear transformations', icon: '🕸️', desc: 'Neural networks distribute logic across layers and weights, not explicit steps. Neural networks apply layers of non-linear activation functions to inputs, creating very complex internal representations that are hard to map to simple human-understandable rules. This layered non-linearity makes it difficult to trace exactly how any specific input leads to a particular output in a fully transparent way.\n\nExamples:\n• Credit scoring models hard to audit\n• Medical AI decisions difficult to justify step-by-step' },
@@ -2726,12 +2717,16 @@
       { cat: 'Large Language Models', q: 'What distinguishes Large Language Models (LLMs) from earlier NLP systems?', opts: ['Single-task specialization', 'Hard-coded grammar rules', 'Massive scale of parameters and training data', 'Ability to train on personal computers'], ans: 'Massive scale of parameters and training data', icon: '📚', desc: 'Large Language Models (LLMs) like GPT series differ from traditional NLP by using billions or trillions of parameters trained on internet-scale text corpora, enabling emergent generalization across tasks via transformer architectures. Earlier systems relied on smaller models with rule-based parsing, statistical features, or task-specific training that couldn\'t capture broad contextual understanding.\n\nExamples:\n• GPT-style models\n• Internet-scale training data' },
       { cat: 'ImageNet', q: 'What major project co-founded by Dr. Fei-Fei Li advanced computer vision?', opts: ['AlphaGo', 'MNIST', 'CIFAR-10', 'ImageNet'], ans: 'ImageNet', icon: '🖼️', image: 'images/fei_fei_li.jpg', desc: 'Dr. Fei-Fei Li co-founded ImageNet, a massive, labeled image dataset that fueled the deep learning (Data driven learning) revolution in computer vision through the annual ImageNet challenge.\n\nExamples:\n• 14M+ labeled images\n• Standard benchmarking across researchers' },
       { cat: 'AI Pioneers', q: 'Who coined the term "Artificial Intelligence"?', opts: ['Marvin Minsky', 'Alan Turing', 'John McCarthy', 'Geoffrey Hinton'], ans: 'John McCarthy', icon: '🎓', image: 'images/john_mccarthy.jpg', desc: 'John McCarthy coined the term "Artificial Intelligence" in his 1955 proposal for the Dartmouth Conference, which is widely regarded as the birthplace of AI as a field.\n\nExamples:\n• Shift from philosophy to engineering discipline' },
+      { cat: 'AI Awards', q: 'In 2025, the Queen Elizabeth Prize for Engineering was awarded for contributions to modern AI/machine learning. How many individuals received the prize, and how many are women?', opts: ['6 recipients; 1 woman', '7 recipients; 1 woman', '7 recipients; 2 women', '8 recipients; 2 women'], ans: '7 recipients; 1 woman', icon: '🏆', image: 'images/qe_prize.png', desc: 'The 2025 Queen Elizabeth Prize for Engineering was awarded to seven engineers for their seminal contributions to modern machine learning, a cornerstone of AI research and application.' },
+      { cat: 'AI Milestones', q: 'AlphaGo defeated which world champion?', opts: ['Garry Kasparov', 'Ke Jie', 'Fan Hui', 'Lee Sedol'], ans: 'Lee Sedol', icon: '⚫', image: 'images/lee_sedol.jpg', desc: 'Lee Sedol was an 18-time world champion and one of the strongest Go players in history. The match took place in 2016, and AlphaGo won 4–1. At the time, Go was considered out of reach for computers because it relies heavily on intuition and pattern recognition, not brute-force calculation.' },
       { cat: 'AI Milestones', q: 'What did AlphaGo defeating the world champion in the Go Game demonstrate?', opts: ['Humans are obsolete', 'Narrow AI can exceed experts in bounded domains', 'AGI is near', 'Strategy games are solved'], ans: 'Narrow AI can exceed experts in bounded domains', icon: '🎯', desc: 'AlphaGo was exceptional at Go — and only Go. It did not understand strategy in general, couldn\'t play chess, and couldn\'t transfer its learning to other domains. This is the hallmark of Narrow AI: extreme competence within a clearly defined problem space.' },
+      { cat: 'AI History', q: 'Which system defeated Garry Kasparov in chess?', opts: ['Deep Blue', 'AlphaZero', 'Stockfish', 'Watson'], ans: 'Deep Blue', icon: '♟️', image: 'images/kasparov_deep_blue.jpg', desc: 'Deep Blue, built by IBM, defeated Garry Kasparov, the reigning world chess champion, in 1997. This was the first time a computer beat a world champion in a classical match under standard tournament conditions. The win marked a milestone for computing power, not machine learning.' },
       { cat: 'AI History', q: 'How was Deep Blue fundamentally different from AlphaGo?', opts: ['Used learning', 'Relied on brute-force search', 'Generalized intelligence', 'Autonomous reasoning'], ans: 'Relied on brute-force search', icon: '🔍', desc: 'Deep Blue used brute-force search and pre-programmed evaluation functions to analyze millions of positions per second. AlphaGo, in contrast, used deep learning and reinforcement learning to develop intuition-like pattern recognition, representing a fundamental shift in AI approach.' },
       { cat: 'AI Ethics', q: 'What is the 30% Rule in AI?', opts: ['AI must be accurate 30% of the time', 'Humans should provide 30% of the input, and AI should handle the remaining 70%.', 'AI should assist humans, but humans must make the final decisions', 'AI models should be trained on 30% data'], ans: 'AI should assist humans, but humans must make the final decisions', icon: '⚖️', image: 'images/bhargavi.png', desc: 'The 30% rule in AI means AI-generated content should not exceed about 30%, while human thinking, judgment, and decisions must make up the rest. This ensures humans remain in control of critical decisions.' },
       { cat: 'AI Concepts', q: 'Artificial General Intelligence (AGI) refers to:', opts: ['Supervised learning', 'Augmented intelligence', 'Narrow AI', 'Human-level general intelligence'], ans: 'Human-level general intelligence', icon: '🧠', desc: 'AGI describes a hypothetical AI that can understand, learn, and apply intelligence across a wide range of tasks, the way humans do. Unlike today\'s AI, AGI would be able to transfer knowledge from one domain to another without being retrained from scratch.' },
       { cat: 'AI Safety', q: 'When an AI model generates false information with high confidence, this is called:', opts: ['Overfitting', 'Hallucination', 'Underfitting', 'Regularization'], ans: 'Hallucination', icon: '👻', desc: 'Hallucination occurs when AI models produce outputs that sound plausible but are factually incorrect or entirely fabricated. This is particularly dangerous in high-stakes domains like healthcare, law, and finance where users may trust confident-sounding but false information.\n\nExamples:\n• Chatbots inventing fake legal citations\n• AI generating non-existent research papers' },
       { cat: 'Transformers', q: 'What architectural innovation made modern LLMs like GPT possible?', opts: ['Convolutional layers', 'Recurrent connections', 'Self-attention mechanism', 'Pooling operations'], ans: 'Self-attention mechanism', icon: '🔄', image: 'images/transformer.png', desc: 'The Transformer architecture, introduced in the 2017 paper "Attention Is All You Need," uses self-attention to process all input tokens in parallel and capture long-range dependencies. This replaced sequential processing in RNNs, enabling massive parallelization and scaling to billions of parameters.\n\nExamples:\n• GPT series\n• BERT\n• All modern LLMs' },
+      { cat: 'Transfer Learning', q: 'Why is transfer learning valuable in AI development?', opts: ['It eliminates the need for data', 'It allows models to leverage knowledge from one task to improve performance on another', 'It makes models smaller', 'It removes bias from training'], ans: 'It allows models to leverage knowledge from one task to improve performance on another', icon: '🔀', desc: 'Transfer learning enables a model trained on a large dataset to be fine-tuned for a specific task with much less data. This dramatically reduces training time, compute costs, and data requirements while achieving strong performance.\n\nExamples:\n• Fine-tuning GPT for customer service\n• Adapting ImageNet models for medical imaging' },
       { cat: 'Explainable AI', q: 'Why is Explainable AI (XAI) critical in regulated industries?', opts: ['It makes models faster', 'It reduces training costs', 'It enables humans to understand and audit AI decisions', 'It eliminates all errors'], ans: 'It enables humans to understand and audit AI decisions', icon: '🔍', desc: 'In regulated industries like healthcare, finance, and criminal justice, decisions must be explainable and auditable. XAI techniques help stakeholders understand why an AI made a specific decision, which is essential for compliance, trust, and identifying potential biases or errors.\n\nExamples:\n• Loan approval explanations required by law\n• Medical diagnosis rationale for doctors' },
       { cat: 'Prompt Engineering', q: 'What is the primary goal of prompt engineering?', opts: ['To train new models from scratch', 'To craft inputs that guide AI models toward desired outputs', 'To reduce model size', 'To eliminate hallucinations completely'], ans: 'To craft inputs that guide AI models toward desired outputs', icon: '✍️', desc: 'Prompt engineering involves designing and refining the text inputs given to AI models to elicit more accurate, relevant, and useful responses. It has become a critical skill as LLMs are highly sensitive to how questions and instructions are framed.\n\nExamples:\n• Chain-of-thought prompting for reasoning\n• Few-shot examples for consistency' },
       { cat: 'AI Governance', q: 'What is the main purpose of AI governance frameworks?', opts: ['To make AI development faster', 'To establish accountability, transparency, and ethical guidelines for AI systems', 'To replace human decision-makers', 'To reduce computing costs'], ans: 'To establish accountability, transparency, and ethical guidelines for AI systems', icon: '📋', desc: 'AI governance frameworks define policies, standards, and oversight mechanisms to ensure AI systems are developed and deployed responsibly. They address risks like bias, privacy violations, and lack of accountability while promoting beneficial AI use.\n\nExamples:\n• EU AI Act regulations\n• Corporate AI ethics boards\n• Model risk management policies' }
@@ -2824,7 +2819,6 @@
       currentTeamIndex = 0;
       questionRevealed = false;
       lastAnsweredQ = -1;
-      $('qTotal').textContent = '/ ' + questions.length;
       showScreen('question');
     }
 
@@ -3143,16 +3137,7 @@
           // Find first unanswered
           nextQ = questionStates.findIndex(s => !s.answered && !s.skipped);
           if (nextQ === -1) {
-            // All questions answered - check for ties
-            const sorted = getSorted();
-            const topScore = sorted[0].score;
-            const tiedTeams = sorted.filter(t => t.score === topScore);
-            
-            if (tiedTeams.length > 1 && topScore > 0) {
-              showScreen('tiebreaker');
-            } else {
-              showScreen('winner');
-            }
+            showScreen('winner');
           } else {
             currentQ = nextQ;
             optionsShown = false;
@@ -3648,7 +3633,7 @@
       const topScore = sorted[0].score;
       const tiedTeams = sorted.filter(t => t.score === topScore);
       
-      if (tiedTeams.length > 1 && topScore > 0) {
+      if (tiedTeams.length > 1) {
         // There's a tie - show tiebreaker
         showScreen('tiebreaker');
       } else {
@@ -3735,11 +3720,6 @@
       $('qTotal').textContent = '/ ' + questions.length;
       showScreen('intro');
     }
-
-    // Initialize on page load
-    document.addEventListener('DOMContentLoaded', function() {
-      $('qTotal').textContent = '/ ' + questions.length;
-    });
   </script>
 </body>
 </html>
