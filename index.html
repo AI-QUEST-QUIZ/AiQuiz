@@ -319,12 +319,15 @@
 
     /* ===== SIDE PANEL ===== */
     .side-panel {
-      width: 160px;
+      width: 200px;
       flex-shrink: 0;
       position: sticky;
       top: 15px;
       max-height: calc(100vh - 60px);
-      overflow: hidden;
+      overflow-y: auto;
+      overflow-x: hidden;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
     }
 
     .side-panel::-webkit-scrollbar {
@@ -332,13 +335,13 @@
     }
 
     .side-panel-header {
-      padding: 6px 8px;
+      padding: 8px 10px;
       border-bottom: 1px solid var(--border);
-      margin-bottom: 2px;
+      margin-bottom: 4px;
     }
 
     .side-panel-title {
-      font-size: 0.7rem;
+      font-size: 0.75rem;
       font-weight: 700;
       color: var(--gold);
       display: flex;
@@ -347,10 +350,10 @@
     }
 
     .questions-grid {
-      padding: 4px;
+      padding: 6px;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 3px;
+      gap: 4px;
     }
 
     .q-tile {
@@ -358,15 +361,15 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      border-radius: 5px;
+      border-radius: 6px;
       cursor: pointer;
       transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
       background: rgba(255,255,255,0.03);
       border: 1px solid transparent;
-      padding: 6px 2px;
+      padding: 8px 4px;
       position: relative;
-      font-size: 0.7rem;
-      min-height: 32px;
+      font-size: 0.75rem;
+      min-height: 44px;
     }
 
     .q-tile:hover {
@@ -397,7 +400,7 @@
 
     .q-tile-num {
       font-weight: 700;
-      font-size: 0.8rem;
+      font-size: 0.85rem;
       color: var(--text-dim);
       line-height: 1;
     }
@@ -411,9 +414,9 @@
     }
 
     .q-tile-team {
-      font-size: 0.4rem;
+      font-size: 0.45rem;
       font-weight: 600;
-      margin-top: 1px;
+      margin-top: 2px;
       color: var(--text-dim);
       max-width: 100%;
       overflow: hidden;
@@ -437,8 +440,8 @@
     .panel-legend {
       display: flex;
       flex-wrap: wrap;
-      gap: 4px;
-      padding: 4px 6px;
+      gap: 6px;
+      padding: 6px 8px;
       border-top: 1px solid var(--border);
       margin-top: 2px;
     }
@@ -446,14 +449,14 @@
     .legend-item {
       display: flex;
       align-items: center;
-      gap: 2px;
-      font-size: 0.5rem;
+      gap: 3px;
+      font-size: 0.55rem;
       color: var(--text-dim);
     }
 
     .legend-dot {
-      width: 5px;
-      height: 5px;
+      width: 6px;
+      height: 6px;
       border-radius: 2px;
     }
 
@@ -471,11 +474,18 @@
 
     /* Last Answered Info */
     .last-answered-info {
-      display: none;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 10px;
+      border-top: 1px solid var(--border);
+      font-size: 0.65rem;
+      background: rgba(255,215,0,0.05);
     }
 
     .last-answered-label {
       color: var(--text-dim);
+      white-space: nowrap;
     }
 
     .last-answered-q {
@@ -484,16 +494,20 @@
       background: rgba(255,215,0,0.15);
       padding: 2px 6px;
       border-radius: 4px;
+      flex-shrink: 0;
     }
 
     .last-answered-detail {
       color: var(--text);
       font-weight: 600;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .last-answered-detail .arrow {
       color: var(--text-dim);
-      margin: 0 4px;
+      margin: 0 3px;
     }
 
     /* Main Content */
@@ -2476,7 +2490,7 @@
           <div class="legend-item"><div class="legend-dot unanswered"></div> Pending</div>
         </div>
         <div class="last-answered-info" id="lastAnsweredInfo" style="display:none;">
-          <span class="last-answered-label">Last Answered:</span>
+          <span class="last-answered-label">Last:</span>
           <span class="last-answered-q" id="lastAnsweredQ">Q1</span>
           <span class="last-answered-detail" id="lastAnsweredDetail">Alpha</span>
         </div>
